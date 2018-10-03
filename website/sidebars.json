@@ -1,0 +1,7 @@
+{
+  "doc": {
+    "Introduction": ["concept", "getting-started"],
+    "Shallow": ["shallow/constructor", "shallow/html"],
+    "Frameworks": ["api-react", "api-vuejs", "api-angular", "api-vanilla"]
+  }
+}

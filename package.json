@@ -1,0 +1,49 @@
+{
+  "name": "component-test-utils-master",
+  "version": "1.0.0-alpha.0",
+  "private": true,
+  "description": "Test HTML component the same way, whenever the framework (React, Angular, Vue.JS, Vanilla, ...) ",
+  "main": "index.js",
+  "scripts": {
+    "install": "npm run lerna bootstrap && cd website && npm i",
+    "lerna": "lerna",
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "jest --coverage",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "tdd": "jest --watch",
+    "changelog": "gitmoji-changelog"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FBerthelot/component-test-utils.git"
+  },
+  "keywords": [
+    "test",
+    "component",
+    "react",
+    "angular",
+    "vue",
+    "vuejs"
+  ],
+  "author": "FBerthelot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FBerthelot/component-test-utils/issues"
+  },
+  "homepage": "https://github.com/FBerthelot/component-test-utils#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.5.0",
+    "coveralls": "^3.0.3",
+    "eslint": "^5.15.1",
+    "eslint-config-xo-react": "^0.19.0",
+    "eslint-config-xo-space": "^0.21.0",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.5.0",
+    "gitmoji-changelog": "^1.1.0",
+    "jest": "^24.5.0",
+    "lerna": "^3.13.1"
+  }
+}

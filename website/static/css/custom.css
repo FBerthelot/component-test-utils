@@ -1,0 +1,13 @@
+.sitemap {
+  text-align: center;
+}
+
+.homeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeSplashFade {
+  width: 100%;
+}

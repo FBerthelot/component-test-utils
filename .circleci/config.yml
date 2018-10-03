@@ -1,0 +1,109 @@
+version: 2.1
+jobs:
+  dependencies:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+      - run: npm ci
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./*
+
+  check:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: npm run test
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./*
+  coverage:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: 'echo repo_token: ${COVERALLS} > .coveralls.yml'
+      - run: npm run coveralls
+
+  build-doc:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: cd website && npm run build
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./*
+
+  publish-doc:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: ./
+      - add_ssh_keys:
+          fingerprints:
+            - '33:fc:90:f7:f7:7e:8d:69:8e:3f:97:b5:1d:b9:ac:a8'
+      - run: |
+          cp .circleci/gitconfig ~/.ssh/config
+          git config --global user.email "florent.berthelot35@gmail.com"
+          git config --global user.name "FBerthelot"
+          cd website
+          CUSTOM_COMMIT_MESSAGE="[skip ci]" GIT_USER=FBerthelot USE_SSH=true npm run publish-gh-pages
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - dependencies:
+          filters:
+            tags:
+              only: /.*/
+      - build-doc:
+          requires:
+            - dependencies
+          filters:
+            tags:
+              only: /.*/
+      - check:
+          requires:
+            - dependencies
+          filters:
+            tags:
+              only: /.*/
+      - coverage:
+          requires:
+            - check
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /.*/
+      - publish-doc:
+          requires:
+            - build-doc
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /.*/

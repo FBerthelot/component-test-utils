@@ -1,0 +1,25 @@
+{
+  "name": "component-test-utils-angular",
+  "version": "1.0.0-alpha.0",
+  "description": " Test angular component the same way as ohter frameworks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"to launch tests, start it from component-tet-utils root folder\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FBerthelot/component-test-utils.git"
+  },
+  "keywords": [
+    "test",
+    "component",
+    "Angular",
+    "webcomponent"
+  ],
+  "author": "FBerthelot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FBerthelot/component-test-utils/issues"
+  },
+  "homepage": "https://github.com/FBerthelot/component-test-utils#readme"
+}

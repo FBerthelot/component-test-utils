@@ -1,0 +1,2 @@
+VerifyHostKeyDNS yes
+StrictHostKeyChecking no
