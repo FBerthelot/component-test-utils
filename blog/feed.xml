@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Component test utils Blog</title>
+        <link>https://component-test-utils.berthelot.io/blog</link>
+        <description>The best place to stay up-to-date with the latest Component test utils news and events.</description>
+        <lastBuildDate>Fri, 15 Mar 2019 06:00:00 GMT</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>Feed for Node.js</generator>
+        <image>
+            <title>Component test utils Blog</title>
+            <url>https://component-test-utils.berthelot.io/img/logo.svg</url>
+            <link>https://component-test-utils.berthelot.io/blog</link>
+        </image>
+        <copyright>MIT Copyright © 2019 Florent Berthelot</copyright>
+        <item>
+            <title><![CDATA[Starting the project !]]></title>
+            <link>https://component-test-utils.berthelot.io/blog/2019/03/15/hello-world.html</link>
+            <guid>https://component-test-utils.berthelot.io/blog/2019/03/15/hello-world.html</guid>
+            <pubDate>Fri, 15 Mar 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Hello world,</p> <p>The project officially start now !</p> <p>Hope you will enjoy doing testing your components.</p> ]]></description>
+        </item>
+    </channel>
+</rss>

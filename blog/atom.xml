@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://component-test-utils.berthelot.io/blog</id>
+    <title>Component test utils Blog</title>
+    <updated>2019-03-15T06:00:00Z</updated>
+    <generator>Feed for Node.js</generator>
+    <link rel="alternate" href="https://component-test-utils.berthelot.io/blog"/>
+    <subtitle>The best place to stay up-to-date with the latest Component test utils news and events.</subtitle>
+    <logo>https://component-test-utils.berthelot.io/img/logo.svg</logo>
+    <rights>MIT Copyright © 2019 Florent Berthelot</rights>
+    <entry>
+        <title type="html"><![CDATA[Starting the project !]]></title>
+        <id>https://component-test-utils.berthelot.io/blog/2019/03/15/hello-world.html</id>
+        <link href="https://component-test-utils.berthelot.io/blog/2019/03/15/hello-world.html">
+        </link>
+        <updated>2019-03-15T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>Hello world,</p> <p>The project officially start now !</p> <p>Hope you will enjoy doing testing your components.</p> ]]></summary>
+        <author>
+            <name>Florent Berthelot</name>
+            <uri>http://twitter.com/berthel350</uri>
+        </author>
+    </entry>
+</feed>
