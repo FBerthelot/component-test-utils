@@ -10,13 +10,13 @@ const shallowMock = (reactEl, mocks, ShallowRender) => {
     Object.keys(mocks).includes(reactEl.type.name);
 
   if (shouldBeMocked) {
-    const shallowRender = new ShallowRender();
-    shallowRender.shallow(
+    const shallowRender = new ShallowRender(
       React.createElement(
         mocks[reactEl.type.name],
         reactEl.props,
         reactEl.props && reactEl.props.children
-      )
+      ),
+      {mocks}
     );
 
     return {

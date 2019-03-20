@@ -21,5 +21,6 @@
   "bugs": {
     "url": "https://github.com/FBerthelot/component-test-utils/issues"
   },
-  "homepage": "https://github.com/FBerthelot/component-test-utils#readme"
+  "homepage": "https://github.com/FBerthelot/component-test-utils#readme",
+  "gitHead": "13c420014036438bcb2650a74976a1cf04ff2034"
 }

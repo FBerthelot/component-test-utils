@@ -22,7 +22,7 @@ The goal of this tool is to have a opinated and unify way to test component disr
 
 ## FrameWorks Available
 
-- ![React - Available](https://img.shields.io/badge/React-Available-brightgreen.svg) ![npm](https://img.shields.io/npm/v/component-test-utils-react.svg)]
+- ![React - Available](https://img.shields.io/badge/React-Available-brightgreen.svg) ![npm](https://img.shields.io/npm/v/component-test-utils-react.svg)
 
 - ![Vue.js - Not Available](https://img.shields.io/badge/Vue.js-Not%20Available%20Yet-orange.svg) ![npm](https://img.shields.io/npm/v/component-test-utils-vuejs.svg)
 
