@@ -3,14 +3,12 @@ const React = require('react');
 
 class ShallowRender {
   constructor() {
-    this.shallow = jest.fn(() => {
-      this._rendered = {
-        type: 'div',
-        props: {
-          children: 'mocked'
-        }
-      };
-    });
+    this._rendered = {
+      type: 'div',
+      props: {
+        children: 'mocked'
+      }
+    };
   }
 }
 
