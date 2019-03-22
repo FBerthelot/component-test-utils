@@ -4,7 +4,6 @@
 class Dispatcher {
   /* ReadContext: () => {},
     useCallback: () => {},
-    useContext: () => {},
     useDebugValue: () => {},
     useImperativeHandle: () => {},
     useLayoutEffect: () => {},
@@ -17,11 +16,17 @@ class Dispatcher {
     this._firstCall = true;
     this._shallowedComponent = shallowedComponent;
     this._currentHookIndex = 0;
+    this._isRendering = false;
+  }
+
+  _informDipatcherRenderIsComming() {
+    this._isRendering = true;
   }
 
   _informDipatcherRenderIsDone() {
     this._currentHookIndex = 0;
     this._firstCall = false;
+    this._isRendering = false;
   }
 
   _getHookIndex() {
@@ -41,8 +46,11 @@ class Dispatcher {
       this._hookStorage[hookIndex],
       newValue => {
         this._hookStorage[hookIndex] = newValue;
-        // Updating the state trigger a render
-        this._shallowedComponent._render();
+
+        // Updating the state trigger a render only while no rendering
+        if (!this._isRendering) {
+          this._shallowedComponent._render();
+        }
       }
     ];
   }
@@ -63,6 +71,10 @@ class Dispatcher {
       this._hookStorage[hookIndex] = memo;
       fn();
     }
+  }
+
+  useContext(context) {
+    return context._currentValue;
   }
 }
 

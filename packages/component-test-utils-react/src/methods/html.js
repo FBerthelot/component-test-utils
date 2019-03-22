@@ -29,7 +29,9 @@ function buildHtmlEl(reactEl) {
   }
 
   const tagname =
-    typeof reactEl.type === 'string' ? reactEl.type : reactEl.type.name;
+    typeof reactEl.type === 'string' ?
+      reactEl.type :
+      reactEl.type.name || reactEl.type.$$typeof.toString();
 
   const props =
     reactEl.props &&

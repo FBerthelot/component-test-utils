@@ -126,7 +126,7 @@ describe('react shallow render', () => {
       };
 
       const cmp = shallow(<Component/>, {
-        mock: {
+        mocks: {
           ChildComponent
         }
       });
@@ -251,6 +251,19 @@ describe('react shallow render', () => {
         '<button type="button" onClick="[onClick]">4 - 7</button>'
       );
     });
+
+    it('should work with a setState into a useEffect', () => {
+      const Component = () => {
+        const [nbPost, setNbPost] = React.useState(0);
+        React.useEffect(() => setNbPost(1));
+
+        return <div>{nbPost}</div>;
+      };
+
+      const cmp = shallow(<Component/>);
+
+      expect(cmp.html()).toBe('<div>0</div>');
+    });
   });
 
   describe('setProps', () => {
@@ -308,6 +321,80 @@ describe('react shallow render', () => {
 
       expect(effect).toHaveBeenCalledTimes(3);
       expect(effect2).toHaveBeenCalledTimes(2);
+    });
+  });
+
+  describe('context', () => {
+    it('should work with useContext hooks', () => {
+      const ThemeContext = React.createContext('light');
+
+      const ThemedButton = () => {
+        const context = React.useContext(ThemeContext);
+        return <div>{context}</div>;
+      };
+
+      const Toolbar = () => {
+        return (
+          <div>
+            <ThemedButton/>
+          </div>
+        );
+      };
+
+      const App = () => {
+        return (
+          <ThemeContext.Provider value="dark">
+            <Toolbar/>
+          </ThemeContext.Provider>
+        );
+      };
+
+      const cmp = shallow(<App/>, {
+        mocks: {
+          Toolbar,
+          ThemedButton
+        }
+      });
+
+      expect(cmp.html()).toBe(
+        '<Symbol(react.provider) value="dark"><Toolbar><div><ThemedButton><div>dark</div></ThemedButton></div></Toolbar></Symbol(react.provider)>'
+      );
+    });
+
+    it('should work with useContext hooks when using the defaut value', () => {
+      const ThemeContext = React.createContext('light');
+
+      const ThemedButton = () => {
+        const context = React.useContext(ThemeContext);
+        return <div>{context}</div>;
+      };
+
+      const Toolbar = () => {
+        return (
+          <div>
+            <ThemedButton/>
+          </div>
+        );
+      };
+
+      const App = () => {
+        return (
+          <ThemeContext.Provider>
+            <Toolbar/>
+          </ThemeContext.Provider>
+        );
+      };
+
+      const cmp = shallow(<App/>, {
+        mocks: {
+          Toolbar,
+          ThemedButton
+        }
+      });
+
+      expect(cmp.html()).toBe(
+        '<Symbol(react.provider)><Toolbar><div><ThemedButton><div>light</div></ThemedButton></div></Toolbar></Symbol(react.provider)>'
+      );
     });
   });
 });

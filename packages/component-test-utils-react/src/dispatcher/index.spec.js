@@ -71,4 +71,11 @@ describe('dispatcher', () => {
       expect(useEffectFn).toHaveBeenCalledTimes(2);
     });
   });
+
+  describe('useContext', () => {
+    it('should return the current value of the context', () => {
+      const contextValue = dispatcher.useContext({_currentValue: 42});
+      expect(contextValue).toBe(42);
+    });
+  });
 });
