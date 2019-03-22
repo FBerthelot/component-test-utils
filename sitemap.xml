@@ -12,4 +12,5 @@
 <url> <loc>https://component-test-utils.berthelot.io/docs/shallow/constructor</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://component-test-utils.berthelot.io/docs/shallow/constructor" /> </url>
 <url> <loc>https://component-test-utils.berthelot.io/docs/shallow/dispatchEvent</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://component-test-utils.berthelot.io/docs/shallow/dispatchEvent" /> </url>
 <url> <loc>https://component-test-utils.berthelot.io/docs/shallow/html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://component-test-utils.berthelot.io/docs/shallow/html" /> </url>
+<url> <loc>https://component-test-utils.berthelot.io/docs/shallow/setProps</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://component-test-utils.berthelot.io/docs/shallow/setProps" /> </url>
 </urlset>
