@@ -27,13 +27,13 @@ class ShallowRender {
     }
   }
 
-  _render() {
+  _render(props) {
     const prevDispatcher = ReactCurrentDispatcher.current;
     ReactCurrentDispatcher.current = this._dispatcher;
 
     this._rendered = this._component.type.call(
       undefined,
-      this._component.props,
+      props || this._component.props,
       this._context
     );
 
@@ -55,6 +55,10 @@ class ShallowRender {
   // Alias for dispatchEvent
   trigger(event) {
     return dispatchEvent(this._rendered, event);
+  }
+
+  setProps(props) {
+    this._render(props);
   }
 }
 

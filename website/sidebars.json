@@ -1,7 +1,12 @@
 {
   "doc": {
     "Introduction": ["concept", "getting-started"],
-    "Shallow": ["shallow/constructor", "shallow/html", "shallow/dispatchEvent"],
+    "Shallow": [
+      "shallow/constructor",
+      "shallow/html",
+      "shallow/dispatchEvent",
+      "shallow/setProps"
+    ],
     "Frameworks": ["api-react", "api-vuejs", "api-angular", "api-vanilla"]
   }
 }
