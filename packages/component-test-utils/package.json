@@ -1,7 +1,7 @@
 {
   "name": "component-test-utils",
   "version": "1.0.0-alpha.1",
-  "description": " Test HTML component the same way, whenever the framework (React, Angular, Vue.JS, Vanilla, ...) ",
+  "description": " Test HTML component the same way, regardless of the framework (React, Angular, Vue.JS, Vanilla, ...) ",
   "main": "index.js",
   "scripts": {
     "test": "echo \"to launch tests, start it from component-tet-utils root folder\" && exit 1"

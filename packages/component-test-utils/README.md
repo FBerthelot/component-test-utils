@@ -1,5 +1,5 @@
 # component-test-utils
-Test HTML component the same way, whenever the FrameWork (React, Angular, Vue.JS, Vanilla, ...)
+Test HTML component the same way, regardless of the framework (React, Angular, Vue.JS, Vanilla, ...)
 
 [![npm Version](https://img.shields.io/npm/v/component-test-utils.svg)](https://www.npmjs.com/package/component-test-utils)
 [![License](https://img.shields.io/npm/l/component-test-utils.svg)](https://www.npmjs.com/package/component-test-utils)
