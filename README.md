@@ -1,12 +1,12 @@
 # component-test-utils
 
-Test HTML component the same way, whenever the FrameWork (React, Angular, Vue.JS, Vanilla, ...)
+Test HTML component the same way, regardless of the framework (React, Angular, Vue.JS, Vanilla, ...)
 
 [![npm Version](https://img.shields.io/npm/v/component-test-utils.svg)](https://www.npmjs.com/package/component-test-utils)
 
 [![License](https://img.shields.io/npm/l/component-test-utils.svg)](https://www.npmjs.com/package/component-test-utils)
 
-Component test utils is a Javascript Utility that help you to interact with your component and get component's output.
+Component test utils is a JavaScript Utility that help you to interact with your component and get component's output.
 
 ## Documentation
 
@@ -15,12 +15,12 @@ Documentation is Available here => [https://component-test-utils.berthelot.io](h
 ## Purpose
 
 Nowdays, testing component is commonly misunderstood.
-Each JavaScript FrameWork has is own way of testing.
-It\'s confusing when you switch of FrameWork.
+Each JavaScript framework has its own way of testing components.
+It's confusing when you switch framework.
 
-The goal of this tool is to have a opinated and unify way to test component disregarding the framework you use.
+The goal of this tool is to have an opinionated and unify the way to test a component disregarding the framework you use.
 
-## FrameWorks Available
+## Frameworks Available
 
 - ![React - Available](https://img.shields.io/badge/React-Available-brightgreen.svg) ![npm](https://img.shields.io/npm/v/component-test-utils-react.svg)
 
@@ -32,7 +32,7 @@ The goal of this tool is to have a opinated and unify way to test component disr
 
 ## Contributing
 
-Contribute as you want! It's always good to open, issues or PR !
+Contribute as you want! It's always good to open issues or PR !
 
 That said, I try to [follow some rules for commit](./CONTRIBUTING.md).
 
