@@ -6,7 +6,6 @@ class Dispatcher {
     useCallback: () => {},
     useContext: () => {},
     useDebugValue: () => {},
-    useEffect: () => {},
     useImperativeHandle: () => {},
     useLayoutEffect: () => {},
     useMemo: () => {},
@@ -14,7 +13,7 @@ class Dispatcher {
     useRef: () => {}, */
 
   constructor(shallowedComponent) {
-    this.states = [];
+    this._hookStorage = [];
     this._firstCall = true;
     this._shallowedComponent = shallowedComponent;
     this._currentHookIndex = 0;
@@ -35,17 +34,35 @@ class Dispatcher {
     const hookIndex = this._getHookIndex();
 
     if (this._firstCall) {
-      this.states.push(initialState);
+      this._hookStorage.push(initialState);
     }
 
     return [
-      this.states[hookIndex],
+      this._hookStorage[hookIndex],
       newValue => {
-        this.states[hookIndex] = newValue;
+        this._hookStorage[hookIndex] = newValue;
         // Updating the state trigger a render
         this._shallowedComponent._render();
       }
     ];
+  }
+
+  useEffect(fn, memo) {
+    const hookIndex = this._getHookIndex();
+
+    const haveMemo = this._hookStorage[hookIndex];
+    // If effect have no memo, consider memo have changed
+    const haveSameMemo =
+      haveMemo &&
+      (this._hookStorage[hookIndex] === memo ||
+        !this._hookStorage[hookIndex].find(
+          (runningMemo, i) => runningMemo !== memo[i]
+        ));
+
+    if (!haveSameMemo) {
+      this._hookStorage[hookIndex] = memo;
+      fn();
+    }
   }
 }
 

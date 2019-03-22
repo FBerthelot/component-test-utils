@@ -3,5 +3,8 @@
   "extends": ["xo-space/esnext", "xo-react/space"],
   "env": {
     "jest": true
+  },
+  "rules": {
+    "react/prop-types": 0
   }
 }
