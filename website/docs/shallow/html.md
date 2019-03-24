@@ -1,8 +1,12 @@
-## ShallowedComponent.html()
+## html()
 
 This method return the html() of the component in a String.
 
-Example with react:
+- Returns: {string} the markup
+
+### Example
+
+#### with react
 
 ```js
 const Hello = ({name}) => {

@@ -1,3 +1,5 @@
+const ReactIs = require('react-is');
+
 function isString(variable) {
   return typeof variable === 'function';
 }
@@ -19,6 +21,18 @@ function buildPropsString(props, reactEl) {
     '';
 }
 
+function getTagname(reactEl) {
+  if (typeof reactEl.type === 'string') {
+    return reactEl.type;
+  }
+
+  if (ReactIs.isFragment(reactEl)) {
+    return '';
+  }
+
+  return reactEl.type.name || reactEl.type.$$typeof.toString();
+}
+
 function buildHtmlEl(reactEl) {
   if (reactEl === null || reactEl === undefined) {
     return '';
@@ -28,10 +42,7 @@ function buildHtmlEl(reactEl) {
     return reactEl.toString();
   }
 
-  const tagname =
-    typeof reactEl.type === 'string' ?
-      reactEl.type :
-      reactEl.type.name || reactEl.type.$$typeof.toString();
+  const tagname = getTagname(reactEl);
 
   const props =
     reactEl.props &&

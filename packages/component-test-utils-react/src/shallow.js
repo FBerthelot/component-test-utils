@@ -4,6 +4,7 @@ const {getHtml} = require('./methods/html');
 const {render} = require('./render/render');
 const {createDispatcher} = require('./dispatcher/');
 const {dispatchEvent} = require('./methods/dispatchEvent');
+const {querySelector} = require('./methods/querySelector');
 
 const {
   ReactCurrentDispatcher
@@ -65,6 +66,10 @@ class ShallowRender {
 
   setProps(props) {
     this._render(props);
+  }
+
+  querySelector(selector) {
+    return querySelector(this._rendered, selector, ShallowRender);
   }
 }
 

@@ -78,4 +78,72 @@ describe('dispatcher', () => {
       expect(contextValue).toBe(42);
     });
   });
+  describe('useReducer', () => {
+    it('should return the initialState at the first render', () => {
+      const initialState = {count: 0};
+      const [state] = dispatcher.useReducer(jest.fn(), initialState);
+
+      expect(state).toEqual(initialState);
+    });
+
+    it('should trigger a render if no currently render when dispatch', () => {
+      const initialState = {count: 0};
+      const [, dispatch] = dispatcher.useReducer(jest.fn(), initialState);
+
+      dispatch({});
+
+      expect(component._render).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not trigger a render if no currently render when dispatch', () => {
+      const initialState = {count: 0};
+      const [, dispatch] = dispatcher.useReducer(jest.fn(), initialState);
+
+      dispatcher._informDipatcherRenderIsComming();
+      dispatch({});
+
+      expect(component._render).toHaveBeenCalledTimes(0);
+    });
+
+    it('should update the state given the result of the function', () => {
+      const initialState = {count: 0};
+      const [state1, dispatch] = dispatcher.useReducer(
+        (sate, action) => action,
+        initialState
+      );
+
+      expect(state1.count).toBe(0);
+
+      dispatcher._informDipatcherRenderIsDone();
+      dispatch({count: 45});
+
+      const [state2] = dispatcher.useReducer(arg => arg, initialState);
+
+      expect(state2.count).toBe(45);
+    });
+  });
 });
+
+/* Const initialState = {count: 0};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return {count: state.count + 1};
+    case 'decrement':
+      return {count: state.count - 1};
+    default:
+      throw new Error();
+  }
+}
+
+function Counter({initialState}) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <>
+      Total : {state.count}
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
+      <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+    </>
+  );
+} */
