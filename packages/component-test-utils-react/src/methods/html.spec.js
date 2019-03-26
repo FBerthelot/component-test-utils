@@ -39,6 +39,14 @@ describe('react getHtml method', () => {
     );
   });
 
+  it('should handle object element type', () => {
+    expect(
+      getHtml({
+        type: {$$typeof: Symbol('React.Provider')}
+      })
+    ).toBe('<Symbol(React.Provider)/>');
+  });
+
   it('should display children as well', () => {
     expect(
       getHtml({

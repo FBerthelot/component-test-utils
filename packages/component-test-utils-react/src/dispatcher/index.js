@@ -4,12 +4,10 @@
 class Dispatcher {
   /* ReadContext: () => {},
     useCallback: () => {},
-    useContext: () => {},
     useDebugValue: () => {},
     useImperativeHandle: () => {},
     useLayoutEffect: () => {},
     useMemo: () => {},
-    useReducer: () => {},
     useRef: () => {}, */
 
   constructor(shallowedComponent) {
@@ -17,11 +15,17 @@ class Dispatcher {
     this._firstCall = true;
     this._shallowedComponent = shallowedComponent;
     this._currentHookIndex = 0;
+    this._isRendering = false;
+  }
+
+  _informDipatcherRenderIsComming() {
+    this._isRendering = true;
   }
 
   _informDipatcherRenderIsDone() {
     this._currentHookIndex = 0;
     this._firstCall = false;
+    this._isRendering = false;
   }
 
   _getHookIndex() {
@@ -31,20 +35,7 @@ class Dispatcher {
   }
 
   useState(initialState) {
-    const hookIndex = this._getHookIndex();
-
-    if (this._firstCall) {
-      this._hookStorage.push(initialState);
-    }
-
-    return [
-      this._hookStorage[hookIndex],
-      newValue => {
-        this._hookStorage[hookIndex] = newValue;
-        // Updating the state trigger a render
-        this._shallowedComponent._render();
-      }
-    ];
+    return this.useReducer((_, arg) => arg, initialState);
   }
 
   useEffect(fn, memo) {
@@ -63,6 +54,32 @@ class Dispatcher {
       this._hookStorage[hookIndex] = memo;
       fn();
     }
+  }
+
+  useContext(context) {
+    return context._currentValue;
+  }
+
+  useReducer(reducer, initialState) {
+    const hookIndex = this._getHookIndex();
+
+    if (this._firstCall) {
+      this._hookStorage.push(initialState);
+    }
+
+    return [
+      this._hookStorage[hookIndex],
+      action => {
+        this._hookStorage[hookIndex] = reducer(
+          this._hookStorage[hookIndex],
+          action
+        );
+        // Updating the state trigger a render only while no rendering
+        if (!this._isRendering) {
+          this._shallowedComponent._render();
+        }
+      }
+    ];
   }
 }
 
