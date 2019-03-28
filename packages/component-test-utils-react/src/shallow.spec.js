@@ -184,6 +184,49 @@ describe('react shallow render', () => {
         '<button type="button" onClick="[clickHandler]">0</button>'
       );
     });
+
+    it('should render a class component', () => {
+      class Component extends React.Component {
+        render() {
+          return <h1>Hello test world</h1>;
+        }
+      }
+
+      const cmp = shallow(<Component/>);
+
+      expect(cmp.html()).toBe('<h1>Hello test world</h1>');
+    });
+
+    it('should render a component containing a class component', () => {
+      class InnerComponent extends React.Component {
+        render() {
+          return <h1>Hello test world</h1>;
+        }
+      }
+
+      const OuterComponent = () => <div><InnerComponent/></div>;
+
+      const cmp = shallow(<OuterComponent/>);
+
+      expect(cmp.html()).toBe('<div><InnerComponent/></div>');
+    });
+
+    it('should render a class component that use a state', () => {
+      class Component extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {nbLikes: 0};
+        }
+
+        render() {
+          return <button type="button">{this.state.nbLikes}</button>;
+        }
+      }
+
+      const cmp = shallow(<Component/>);
+
+      expect(cmp.html()).toBe('<button type="button">0</button>');
+    });
   });
 
   describe('dispatchEvent', () => {
