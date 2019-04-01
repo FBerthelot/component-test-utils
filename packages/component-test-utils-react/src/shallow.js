@@ -29,10 +29,21 @@ class ShallowRender {
 
     this._dispatcher._informDipatcherRenderIsComming();
 
-    const reactEl = this._component.type.call(
-      undefined,
-      props || this._component.props
-    );
+    let reactEl;
+
+    if (isClassComponent(this._component.type)) {
+      const instance = new this._component.type( // eslint-disable-line new-cap
+        props || this._component.props
+        // This._context,
+        // this._updater,
+      );
+      reactEl = instance.render();
+    } else {
+      reactEl = this._component.type.call(
+        undefined,
+        props || this._component.props
+      );
+    }
 
     this._rendered = render(reactEl, this._config, ShallowRender);
 
@@ -76,3 +87,7 @@ class ShallowRender {
 exports.shallow = (component, config) => {
   return new ShallowRender(component, config);
 };
+
+function isClassComponent(Component) {
+  return Boolean(Component.prototype && Component.prototype.isReactComponent);
+}
