@@ -33,6 +33,16 @@ describe('react shallow render', () => {
       expect(cmp.html()).toBe('<button type="button">0</button>');
     });
 
+    it('it should render component with props', () => {
+      const Component = ({message}) => {
+        return <h1>Hello {message}</h1>;
+      };
+
+      const cmp = shallow(<Component message="test world"/>);
+
+      expect(cmp.html()).toBe('<h1>Hello test world</h1>');
+    });
+
     it('it should render Component but should mock ChildComponent', () => {
       const ChildComponent = () => {
         return <button type="button">0</button>;
