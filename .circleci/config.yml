@@ -95,8 +95,6 @@ workflows:
           requires:
             - check
           filters:
-            branches:
-              only: master
             tags:
               only: /.*/
       - publish-doc:
