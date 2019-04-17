@@ -29,8 +29,17 @@
       "shallow/constructor": {
         "title": "shallow/constructor"
       },
+      "shallow/dispatchEvent": {
+        "title": "shallow/dispatchEvent"
+      },
       "shallow/html": {
         "title": "shallow/html"
+      },
+      "shallow/querySelector": {
+        "title": "shallow/querySelector"
+      },
+      "shallow/setProps": {
+        "title": "shallow/setProps"
       }
     },
     "links": {
