@@ -128,10 +128,14 @@ describe('dispatcher', () => {
     it('should generate the callback each time when no memo is given', () => {
       const countFn = jest.fn();
 
-      const memoizedCallback1 = dispatcher.useCallback(jest.fn(() => countFn()));
+      const memoizedCallback1 = dispatcher.useCallback(
+        jest.fn(() => countFn())
+      );
 
       dispatcher._informDipatcherRenderIsComming();
-      const memoizedCallback2 = dispatcher.useCallback(jest.fn(() => countFn()));
+      const memoizedCallback2 = dispatcher.useCallback(
+        jest.fn(() => countFn())
+      );
 
       expect(memoizedCallback1).not.toBe(memoizedCallback2);
     });
@@ -139,10 +143,16 @@ describe('dispatcher', () => {
     it('should generate the callback each time when memo given not the same', () => {
       const countFn = jest.fn();
 
-      const memoizedCallback1 = dispatcher.useCallback(jest.fn(() => countFn()), [1]);
+      const memoizedCallback1 = dispatcher.useCallback(
+        jest.fn(() => countFn()),
+        [1]
+      );
 
       dispatcher._informDipatcherRenderIsDone();
-      const memoizedCallback2 = dispatcher.useCallback(jest.fn(() => countFn()), [2]);
+      const memoizedCallback2 = dispatcher.useCallback(
+        jest.fn(() => countFn()),
+        [2]
+      );
 
       expect(memoizedCallback1).not.toBe(memoizedCallback2);
     });
@@ -150,10 +160,16 @@ describe('dispatcher', () => {
     it('should not generate the callback each time when memo is given', () => {
       const countFn = jest.fn();
 
-      const memoizedCallback1 = dispatcher.useCallback(jest.fn(() => countFn()), [1]);
+      const memoizedCallback1 = dispatcher.useCallback(
+        jest.fn(() => countFn()),
+        [1]
+      );
 
       dispatcher._informDipatcherRenderIsDone();
-      const memoizedCallback2 = dispatcher.useCallback(jest.fn(() => countFn()), [1]);
+      const memoizedCallback2 = dispatcher.useCallback(
+        jest.fn(() => countFn()),
+        [1]
+      );
 
       expect(memoizedCallback1).toBe(memoizedCallback2);
     });
@@ -180,7 +196,9 @@ describe('dispatcher', () => {
     it('should computeValue each time when different memo is send', () => {
       dispatcher.useMemo(() => computeExpensiveValue(), [1]);
       dispatcher._informDipatcherRenderIsDone();
-      const computedNTime = dispatcher.useMemo(() => computeExpensiveValue(), [2]);
+      const computedNTime = dispatcher.useMemo(() => computeExpensiveValue(), [
+        2
+      ]);
 
       expect(computedNTime).toBe(2);
     });
@@ -188,7 +206,9 @@ describe('dispatcher', () => {
     it('should computeValue one time when same memo is send', () => {
       dispatcher.useMemo(() => computeExpensiveValue(), [1]);
       dispatcher._informDipatcherRenderIsDone();
-      const computedNTime = dispatcher.useMemo(() => computeExpensiveValue(), [1]);
+      const computedNTime = dispatcher.useMemo(() => computeExpensiveValue(), [
+        1
+      ]);
 
       expect(computedNTime).toBe(1);
     });
@@ -208,6 +228,41 @@ describe('dispatcher', () => {
       const result = dispatcher.useRef(object);
 
       expect(result.current).toBe(object);
+    });
+  });
+
+  describe('useImperativeHandle', () => {
+    it('should enhance the reference given in params', () => {
+      const ref = dispatcher.useRef({});
+      const focusFn = jest.fn();
+      dispatcher.useImperativeHandle(ref, () => ({
+        focus: focusFn
+      }));
+
+      ref.current.focus();
+
+      expect(focusFn).toHaveBeenCalled();
+    });
+
+    it('should memoize the function given', () => {
+      const objectBuilder = jest.fn(() => ({
+        focus: jest.fn()
+      }));
+
+      const ref = dispatcher.useRef({});
+      dispatcher.useImperativeHandle(ref, objectBuilder, [1]);
+      dispatcher._informDipatcherRenderIsDone();
+
+      dispatcher.useRef({});
+      dispatcher.useImperativeHandle(ref, objectBuilder, [1]);
+      dispatcher._informDipatcherRenderIsDone();
+
+      expect(objectBuilder).toHaveBeenCalledTimes(1);
+
+      dispatcher.useRef({});
+      dispatcher.useImperativeHandle(ref, objectBuilder, [2]);
+
+      expect(objectBuilder).toHaveBeenCalledTimes(2);
     });
   });
 });

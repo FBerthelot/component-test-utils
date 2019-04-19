@@ -4,10 +4,7 @@
 class Dispatcher {
   /* ReadContext: () => {},
     useDebugValue: () => {},
-    useImperativeHandle: () => {},
-    useLayoutEffect: () => {},
-    useMemo: () => {},
-    useRef: () => {}, */
+    useLayoutEffect: () => {} */
 
   constructor(shallowedComponent) {
     this._hookStorage = [];
@@ -34,13 +31,16 @@ class Dispatcher {
   }
 
   _isSameMemo(memo, hookIndex) {
-    const haveMemo = this._hookStorage[hookIndex] && this._hookStorage[hookIndex].memo;
+    const haveMemo =
+      this._hookStorage[hookIndex] && this._hookStorage[hookIndex].memo;
 
-    return haveMemo &&
-          (this._hookStorage[hookIndex].memo === memo ||
-            !this._hookStorage[hookIndex].memo.find(
-              (runningMemo, i) => runningMemo !== memo[i]
-            ));
+    return (
+      haveMemo &&
+      (this._hookStorage[hookIndex].memo === memo ||
+        !this._hookStorage[hookIndex].memo.find(
+          (runningMemo, i) => runningMemo !== memo[i]
+        ))
+    );
   }
 
   useState(initialState) {
@@ -110,6 +110,22 @@ class Dispatcher {
     }
 
     return this._hookStorage[hookIndex];
+  }
+
+  useImperativeHandle(ref, objectBuilder, memo) {
+    const hookIndex = this._getHookIndex();
+    const haveSameMemo = this._isSameMemo(memo, hookIndex);
+
+    if (haveSameMemo) {
+      return;
+    }
+
+    this._hookStorage[hookIndex] = {memo};
+
+    ref.current = {
+      ...ref.current,
+      ...objectBuilder()
+    };
   }
 }
 
