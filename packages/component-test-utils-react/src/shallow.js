@@ -27,6 +27,8 @@ class ShallowRender {
     const prevDispatcher = ReactCurrentDispatcher.current;
     ReactCurrentDispatcher.current = this._dispatcher;
 
+    this._dispatcher.debug = Boolean(this._config.debug);
+
     this._dispatcher._informDipatcherRenderIsComming();
 
     let reactEl;
@@ -47,10 +49,7 @@ class ShallowRender {
         this._component.ref
       );
     } else {
-      reactEl = this._component.type.call(
-        undefined,
-        props
-      );
+      reactEl = this._component.type.call(undefined, props);
     }
 
     this._rendered = render(reactEl, this._config, ShallowRender);

@@ -214,7 +214,11 @@ describe('react shallow render', () => {
         }
       }
 
-      const OuterComponent = () => <div><InnerComponent/></div>;
+      const OuterComponent = () => (
+        <div>
+          <InnerComponent/>
+        </div>
+      );
 
       const cmp = shallow(<OuterComponent/>);
 
@@ -514,7 +518,9 @@ describe('react shallow render', () => {
 
       const cmp = shallow(<FancyButton>test</FancyButton>);
 
-      expect(cmp.html()).toBe('<button class="FancyButton" type="button">test</button>');
+      expect(cmp.html()).toBe(
+        '<button class="FancyButton" type="button">test</button>'
+      );
     });
 
     it('should work with foward ref', () => {
@@ -536,8 +542,45 @@ describe('react shallow render', () => {
         mocks: {FancyButton}
       });
 
-      expect(cmp.html()).toBe('<button class="FancyButton" type="button">Click me!</button>');
+      expect(cmp.html()).toBe(
+        '<button class="FancyButton" type="button">Click me!</button>'
+      );
       expect(ref).toBe(cmp._rendered.ref);
+    });
+  });
+
+  describe('debug option', () => {
+    beforeEach(() => {
+      console.initialDebug = console.debug;
+      console.debug = jest.fn();
+    });
+    afterEach(() => {
+      console.debug = console.initialDebug;
+      delete console.initialDebug;
+    });
+
+    it('should call console.debug', () => {
+      const Component = () => {
+        React.useDebugValue('need to be logged');
+        return <div/>;
+      };
+
+      shallow(<Component/>, {
+        debug: true
+      });
+
+      expect(console.debug).toHaveBeenCalled();
+    });
+
+    it('should not call console.debug by default', () => {
+      const Component = () => {
+        React.useDebugValue('need to be logged');
+        return <div/>;
+      };
+
+      shallow(<Component/>);
+
+      expect(console.debug).not.toHaveBeenCalled();
     });
   });
 });

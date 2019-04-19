@@ -278,4 +278,19 @@ describe('dispatcher', () => {
       expect(res).toBe(4);
     });
   });
+
+  describe('useDebugValue', () => {
+    it('should do nothing when dispatcher configuration is not debug', () => {
+      console.debug = jest.fn();
+      dispatcher.useDebugValue('yolo');
+      expect(console.debug).not.toHaveBeenCalled();
+    });
+
+    it('should call console.debug when dispatcher configuration is debug', () => {
+      dispatcher.debug = true;
+      console.debug = jest.fn();
+      dispatcher.useDebugValue('yolo');
+      expect(console.debug).toHaveBeenCalledWith('yolo');
+    });
+  });
 });

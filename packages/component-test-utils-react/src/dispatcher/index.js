@@ -2,9 +2,7 @@
 // https://github.com/facebook/react/blob/master/packages/react/src/ReactHooks.js
 
 class Dispatcher {
-  /* ReadContext: () => {},
-    useDebugValue: () => {},
-    useLayoutEffect: () => {} */
+  /* ReadContext: () => {} */
 
   constructor(shallowedComponent) {
     this._hookStorage = [];
@@ -130,6 +128,12 @@ class Dispatcher {
 
   useLayoutEffect(...args) {
     return this.useEffect(...args);
+  }
+
+  useDebugValue(...args) {
+    if (this.debug) {
+      console.debug(...args);
+    }
   }
 }
 
