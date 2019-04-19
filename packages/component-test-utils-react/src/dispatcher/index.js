@@ -127,6 +127,10 @@ class Dispatcher {
       ...objectBuilder()
     };
   }
+
+  useLayoutEffect(...args) {
+    return this.useEffect(...args);
+  }
 }
 
 exports.createDispatcher = shallowedComponent => {

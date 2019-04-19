@@ -265,4 +265,17 @@ describe('dispatcher', () => {
       expect(objectBuilder).toHaveBeenCalledTimes(2);
     });
   });
+
+  describe('useLayoutEffect', () => {
+    it('should call useEffect', () => {
+      dispatcher.useEffect = jest.fn(() => 4);
+
+      const args = [jest.fn(), [1, 4]];
+
+      const res = dispatcher.useLayoutEffect(...args);
+
+      expect(dispatcher.useEffect).toHaveBeenCalledWith(...args);
+      expect(res).toBe(4);
+    });
+  });
 });
