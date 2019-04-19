@@ -193,4 +193,21 @@ describe('dispatcher', () => {
       expect(computedNTime).toBe(1);
     });
   });
+
+  describe('useRef', () => {
+    it('should return the initial value into the current', () => {
+      const result = dispatcher.useRef(42);
+      expect(result.current).toEqual(42);
+    });
+
+    it('should return the same object each render', () => {
+      const object = {};
+      dispatcher.useRef(object);
+      object.focus = true;
+      dispatcher._informDipatcherRenderIsDone();
+      const result = dispatcher.useRef(object);
+
+      expect(result.current).toBe(object);
+    });
+  });
 });

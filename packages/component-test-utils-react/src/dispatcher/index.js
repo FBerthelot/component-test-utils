@@ -99,6 +99,18 @@ class Dispatcher {
     this._hookStorage[hookIndex] = {memo, value};
     return value;
   }
+
+  useRef(initialValue) {
+    const hookIndex = this._getHookIndex();
+
+    if (!this._hookStorage[hookIndex]) {
+      this._hookStorage[hookIndex] = {
+        current: initialValue
+      };
+    }
+
+    return this._hookStorage[hookIndex];
+  }
 }
 
 exports.createDispatcher = shallowedComponent => {

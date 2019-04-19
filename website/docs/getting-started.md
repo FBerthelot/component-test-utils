@@ -4,7 +4,7 @@ title: Getting Started
 
 ## React
 
-Dtart by installing dependencies:
+Start by installing dependencies:
 `npm i -D component-test-utils-react` with npm, or `yarn add -D component-test-utils-react` with yarn.
 
 Then, you can test everything work well by executing this test (with jest) :
