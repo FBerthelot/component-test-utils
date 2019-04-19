@@ -12,7 +12,8 @@
     "test": "jest --coverage",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "tdd": "jest --watch",
-    "changelog": "gitmoji-changelog"
+    "changelog": "gitmoji-changelog",
+    "doc": "cd website && npm run start"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,9 @@
   "devDependencies": {
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
+    "@types/jest": "^24.0.11",
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
     "babel-jest": "^24.5.0",
     "coveralls": "^3.0.3",
     "eslint": "^5.15.1",
@@ -44,6 +48,8 @@
     "eslint-plugin-react-hooks": "^1.5.0",
     "gitmoji-changelog": "^1.1.0",
     "jest": "^24.5.0",
-    "lerna": "^3.13.1"
+    "lerna": "^3.13.1",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.3"
   }
 }

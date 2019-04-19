@@ -2,8 +2,9 @@
   "name": "component-test-utils-angular",
   "version": "1.0.0-alpha.1",
   "description": " Test angular component the same way as ohter frameworks",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
+    "start": "tsc && node .",
     "test": "echo \"to launch tests, start it from component-tet-utils root folder\" && exit 1"
   },
   "repository": {
@@ -22,5 +23,16 @@
     "url": "https://github.com/FBerthelot/component-test-utils/issues"
   },
   "homepage": "https://github.com/FBerthelot/component-test-utils#readme",
-  "gitHead": "13c420014036438bcb2650a74976a1cf04ff2034"
+  "gitHead": "13c420014036438bcb2650a74976a1cf04ff2034",
+  "dependencies": {
+    "@angular/animations": "^7.2.12",
+    "@angular/common": "^7.2.12",
+    "@angular/compiler": "^7.2.11",
+    "@angular/core": "^7.2.11",
+    "@angular/http": "^7.2.12",
+    "@angular/platform-browser": "^7.2.11",
+    "@angular/platform-browser-dynamic": "^7.2.11",
+    "@angular/platform-server": "^7.2.12",
+    "core-js": "^3.0.1"
+  }
 }
