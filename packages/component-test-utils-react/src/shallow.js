@@ -1,5 +1,5 @@
 const React = require('react');
-// Const ReactIs = require('react-is');
+const ReactIs = require('react-is');
 const {getHtml} = require('./methods/html');
 const {render} = require('./render/render');
 const {createDispatcher} = require('./dispatcher/');
@@ -23,26 +23,33 @@ class ShallowRender {
     this._render();
   }
 
-  _render(props) {
+  _render(customProps) {
     const prevDispatcher = ReactCurrentDispatcher.current;
     ReactCurrentDispatcher.current = this._dispatcher;
+
+    this._dispatcher.debug = Boolean(this._config.debug);
 
     this._dispatcher._informDipatcherRenderIsComming();
 
     let reactEl;
 
+    const props = customProps || this._component.props;
+
     if (isClassComponent(this._component.type)) {
       const instance = new this._component.type( // eslint-disable-line new-cap
-        props || this._component.props
+        props
         // This._context,
         // this._updater,
       );
       reactEl = instance.render();
-    } else {
-      reactEl = this._component.type.call(
+    } else if (ReactIs.isForwardRef(this._component)) {
+      reactEl = this._component.type.render.call(
         undefined,
-        props || this._component.props
+        props,
+        this._component.ref
       );
+    } else {
+      reactEl = this._component.type.call(undefined, props);
     }
 
     this._rendered = render(reactEl, this._config, ShallowRender);

@@ -214,7 +214,11 @@ describe('react shallow render', () => {
         }
       }
 
-      const OuterComponent = () => <div><InnerComponent/></div>;
+      const OuterComponent = () => (
+        <div>
+          <InnerComponent/>
+        </div>
+      );
 
       const cmp = shallow(<OuterComponent/>);
 
@@ -501,6 +505,82 @@ describe('react shallow render', () => {
       expect(cmp.html()).toBe(
         '<>Total : 0<button type="button" onClick="[onClick]">+</button><button id="desc" type="button" onClick="[onClick]">-</button></>'
       );
+    });
+  });
+
+  describe('ref', () => {
+    it('should not ignore fowardref HOC', () => {
+      const FancyButton = React.forwardRef((props, ref) => (
+        <button ref={ref} className="FancyButton" type="button">
+          {props.children}
+        </button>
+      ));
+
+      const cmp = shallow(<FancyButton>test</FancyButton>);
+
+      expect(cmp.html()).toBe(
+        '<button class="FancyButton" type="button">test</button>'
+      );
+    });
+
+    it('should work with foward ref', () => {
+      const ref = React.createRef();
+
+      const FancyButton = React.forwardRef((props, ref) => {
+        return (
+          <button ref={ref} className="FancyButton" type="button">
+            {props.children}
+          </button>
+        );
+      });
+
+      const App = () => {
+        return <FancyButton ref={ref}>Click me!</FancyButton>;
+      };
+
+      const cmp = shallow(<App/>, {
+        mocks: {FancyButton}
+      });
+
+      expect(cmp.html()).toBe(
+        '<button class="FancyButton" type="button">Click me!</button>'
+      );
+      expect(ref).toBe(cmp._rendered.ref);
+    });
+  });
+
+  describe('debug option', () => {
+    beforeEach(() => {
+      console.initialDebug = console.debug;
+      console.debug = jest.fn();
+    });
+    afterEach(() => {
+      console.debug = console.initialDebug;
+      delete console.initialDebug;
+    });
+
+    it('should call console.debug', () => {
+      const Component = () => {
+        React.useDebugValue('need to be logged');
+        return <div/>;
+      };
+
+      shallow(<Component/>, {
+        debug: true
+      });
+
+      expect(console.debug).toHaveBeenCalled();
+    });
+
+    it('should not call console.debug by default', () => {
+      const Component = () => {
+        React.useDebugValue('need to be logged');
+        return <div/>;
+      };
+
+      shallow(<Component/>);
+
+      expect(console.debug).not.toHaveBeenCalled();
     });
   });
 });

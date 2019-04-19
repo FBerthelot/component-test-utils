@@ -2,13 +2,7 @@
 // https://github.com/facebook/react/blob/master/packages/react/src/ReactHooks.js
 
 class Dispatcher {
-  /* ReadContext: () => {},
-    useCallback: () => {},
-    useDebugValue: () => {},
-    useImperativeHandle: () => {},
-    useLayoutEffect: () => {},
-    useMemo: () => {},
-    useRef: () => {}, */
+  /* ReadContext: () => {} */
 
   constructor(shallowedComponent) {
     this._hookStorage = [];
@@ -34,24 +28,29 @@ class Dispatcher {
     return hookIndex;
   }
 
+  _isSameMemo(memo, hookIndex) {
+    const haveMemo =
+      this._hookStorage[hookIndex] && this._hookStorage[hookIndex].memo;
+
+    return (
+      haveMemo &&
+      (this._hookStorage[hookIndex].memo === memo ||
+        !this._hookStorage[hookIndex].memo.find(
+          (runningMemo, i) => runningMemo !== memo[i]
+        ))
+    );
+  }
+
   useState(initialState) {
     return this.useReducer((_, arg) => arg, initialState);
   }
 
   useEffect(fn, memo) {
     const hookIndex = this._getHookIndex();
-
-    const haveMemo = this._hookStorage[hookIndex];
-    // If effect have no memo, consider memo have changed
-    const haveSameMemo =
-      haveMemo &&
-      (this._hookStorage[hookIndex] === memo ||
-        !this._hookStorage[hookIndex].find(
-          (runningMemo, i) => runningMemo !== memo[i]
-        ));
+    const haveSameMemo = this._isSameMemo(memo, hookIndex);
 
     if (!haveSameMemo) {
-      this._hookStorage[hookIndex] = memo;
+      this._hookStorage[hookIndex] = {memo};
       fn();
     }
   }
@@ -80,6 +79,61 @@ class Dispatcher {
         }
       }
     ];
+  }
+
+  useCallback(fn, memo) {
+    return this.useMemo(() => fn, memo);
+  }
+
+  useMemo(fn, memo) {
+    const hookIndex = this._getHookIndex();
+    const haveSameMemo = this._isSameMemo(memo, hookIndex);
+
+    if (haveSameMemo) {
+      return this._hookStorage[hookIndex].value;
+    }
+
+    const value = fn();
+    this._hookStorage[hookIndex] = {memo, value};
+    return value;
+  }
+
+  useRef(initialValue) {
+    const hookIndex = this._getHookIndex();
+
+    if (!this._hookStorage[hookIndex]) {
+      this._hookStorage[hookIndex] = {
+        current: initialValue
+      };
+    }
+
+    return this._hookStorage[hookIndex];
+  }
+
+  useImperativeHandle(ref, objectBuilder, memo) {
+    const hookIndex = this._getHookIndex();
+    const haveSameMemo = this._isSameMemo(memo, hookIndex);
+
+    if (haveSameMemo) {
+      return;
+    }
+
+    this._hookStorage[hookIndex] = {memo};
+
+    ref.current = {
+      ...ref.current,
+      ...objectBuilder()
+    };
+  }
+
+  useLayoutEffect(...args) {
+    return this.useEffect(...args);
+  }
+
+  useDebugValue(...args) {
+    if (this.debug) {
+      console.debug(...args);
+    }
   }
 }
 

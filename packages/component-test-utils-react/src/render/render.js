@@ -6,14 +6,26 @@ const render = (reactEl, config, ShallowRender) => {
     return reactEl;
   }
 
-  // When rendering modify the context value
-  if (ReactIs.isContextProvider(reactEl) && reactEl.props.value) {
-    reactEl.type._context._currentValue = reactEl.props.value;
-  }
-
   const isAlreadyMocked = Boolean(reactEl._mock);
   if (isAlreadyMocked) {
     reactEl._mock._render();
+  }
+
+  if (!isAlreadyMocked && ReactIs.isForwardRef(reactEl)) {
+    const shallowRender = new ShallowRender(
+      reactEl,
+      config
+    );
+
+    return {
+      ...shallowRender._rendered,
+      _mock: shallowRender
+    };
+  }
+
+  // When rendering modify the context value
+  if (ReactIs.isContextProvider(reactEl) && reactEl.props.value) {
+    reactEl.type._context._currentValue = reactEl.props.value;
   }
 
   const shouldBeMocked =
