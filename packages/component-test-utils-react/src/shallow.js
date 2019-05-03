@@ -5,6 +5,7 @@ const {render} = require('./render/render');
 const {createDispatcher} = require('./dispatcher/');
 const {dispatchEvent} = require('./methods/dispatchEvent');
 const {querySelector} = require('./methods/querySelector');
+const {Updater} = require('./updater/updater');
 
 const {
   ReactCurrentDispatcher
@@ -36,12 +37,25 @@ class ShallowRender {
     const props = customProps || this._component.props;
 
     if (isClassComponent(this._component.type)) {
-      const instance = new this._component.type( // eslint-disable-line new-cap
-        props
-        // This._context,
-        // this._updater,
-      );
-      reactEl = instance.render();
+      if (!this._instance) {
+        const updater = new Updater(this);
+        // eslint-disable-next-line new-cap
+        this._instance = new this._component.type(
+          props,
+          {},
+          updater
+        );
+        this._instance.props = props;
+        this._instance.state = this._instance.state || null;
+        this._instance.updater = updater;
+      }
+
+      /*      If (typeof this._instance.componentWillMount === 'function') {
+        this._instance.componentWillMount();
+      }
+*/
+
+      reactEl = this._instance.render();
     } else if (ReactIs.isForwardRef(this._component)) {
       reactEl = this._component.type.render.call(
         undefined,
@@ -54,18 +68,15 @@ class ShallowRender {
 
     this._rendered = render(reactEl, this._config, ShallowRender);
 
-    /* If (ReactIs.isContextProvider(this._rendered)) {
-      this._context = this._rendered.type._context;
-      // Actualize the current value according to the value
-      if (Object.keys(this._rendered.props).includes('value')) {
-        this._context._currentValue = this._rendered.props.value;
-      }
-    } */
-
     // Finish recording the order of hooks by toogling this dispatcher property
     this._dispatcher._informDipatcherRenderIsDone();
 
     ReactCurrentDispatcher.current = prevDispatcher;
+
+    // Pop all callback and invoke theme (only for class components)
+    if (this._instance) {
+      this._instance.updater._invokeCallbacks();
+    }
   }
 
   // Methods

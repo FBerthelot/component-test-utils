@@ -282,6 +282,71 @@ describe('react shallow render', () => {
       );
     });
 
+    it('should trigger click on a class component that use a setState object', () => {
+      class Component extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {nbLikes: 0};
+          this.handleClick = this.handleClick.bind(this);
+        }
+
+        handleClick() {
+          this.setState({
+            nbLikes: 42
+          });
+        }
+
+        render() {
+          return (
+            <button type="button" onClick={this.handleClick}>
+              {this.state.nbLikes}
+            </button>
+          );
+        }
+      }
+
+      const cmp = shallow(<Component/>);
+      cmp.dispatchEvent('Click');
+
+      expect(cmp.html()).toBe(
+        '<button type="button" onClick="[bound handleClick]">42</button>'
+      );
+    });
+
+    it('should trigger click on a class component that use a setState function', () => {
+      class Component extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {nbLikes: 0};
+          this.handleClick = this.handleClick.bind(this);
+        }
+
+        handleClick() {
+          this.setState(prevState => {
+            return {
+              nbLikes: prevState.nbLikes + 1
+            };
+          });
+        }
+
+        render() {
+          return (
+            <button type="button" onClick={this.handleClick}>
+              {this.state.nbLikes}
+            </button>
+          );
+        }
+      }
+
+      const cmp = shallow(<Component/>);
+
+      cmp.dispatchEvent('Click');
+
+      expect(cmp.html()).toBe(
+        '<button type="button" onClick="[bound handleClick]">1</button>'
+      );
+    });
+
     it('should trigger click event and retrieve the good hook', () => {
       const Component = () => {
         const [nbPost, setNbPost] = React.useState(0);
