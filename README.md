@@ -48,7 +48,7 @@ That said, I try to [follow some rules for commit](./CONTRIBUTING.md).
 ![Website](https://img.shields.io/website-up-down-green-red/https/component-test-utils.berthelot.io.svg)
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
-[![gitmoji-changelog](https://img.shields.io/badge/Changelog-gitmoji-brightgreen.svg)](https://github.com/frinyvonnick/gitmoji-changelog)
+[![gitmoji-changelog](https://img.shields.io/badge/Changelog-gitmoji-brightgreen.svg)](https://github.com/frinyvonnick/gitmoji-changelog) [![Greenkeeper badge](https://badges.greenkeeper.io/FBerthelot/component-test-utils.svg)](https://greenkeeper.io/)
 
 ### Commands
 
