@@ -25,7 +25,7 @@ class ShallowRender {
     this._render();
   }
 
-  _render(customProps) {
+  _render(customProps, forceUpdate) {
     let firstRender = false;
 
     const prevDispatcher = ReactCurrentDispatcher.current;
@@ -65,6 +65,7 @@ class ShallowRender {
       this._instance.props = props;
 
       if (
+        !forceUpdate &&
         !firstRender &&
         typeof this._instance.shouldComponentUpdate === 'function' &&
         !this._instance.shouldComponentUpdate(

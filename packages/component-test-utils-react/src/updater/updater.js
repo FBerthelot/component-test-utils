@@ -28,7 +28,7 @@ export class Updater {
 
   enqueueForceUpdate(publicInstance, callback) {
     this._enqueueCallback(callback, publicInstance);
-    this._shallow._render();
+    this._shallow._render(undefined, true);
   }
 
   enqueueReplaceState(publicInstance, completeState, callback) {
