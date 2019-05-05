@@ -1031,11 +1031,120 @@ describe('react shallow render', () => {
   });
 
   describe('getDerivedStateFromError', () => {
-    // TODO
+    it('should call getDerivedStateFromError when error occur', () => {
+      class ErrorBoundary extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {error: null};
+        }
+
+        static getDerivedStateFromError(e) {
+          return {error: e.message};
+        }
+
+        render() {
+          if (this.state.error) {
+            return <h1>{this.state.error}</h1>;
+          }
+
+          return this.props.children;
+        }
+      }
+      const ComponentInError = () => {
+        throw new Error('fetching...');
+      };
+
+      const cmp = shallow(
+        <ErrorBoundary>
+          <ComponentInError/>
+        </ErrorBoundary>,
+        {
+          mocks: {ComponentInError}
+        }
+      );
+
+      expect(cmp.html()).toBe('<h1>fetching...</h1>');
+    });
+
+    it('should throw error if getDerivedStateFromError is not implemented', () => {
+      class ErrorBoundary extends React.Component {
+        componentDidCatch() {}
+
+        render() {
+          return this.props.children;
+        }
+      }
+
+      const error = new Error('fetching...');
+      const ComponentInError = () => {
+        throw error;
+      };
+
+      expect(() =>
+        shallow(
+          <ErrorBoundary>
+            <ComponentInError/>
+          </ErrorBoundary>,
+          {
+            mocks: {ComponentInError}
+          }
+        )
+      ).toThrow('fetching...');
+    });
   });
+
   describe('componentDidCatch', () => {
-    // TODO
+    it('should call componentDidCatch with the error and some info', () => {
+      let args;
+      class ErrorBoundary extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            hasError: false
+          };
+        }
+
+        static getDerivedStateFromError() {
+          return {hasError: true};
+        }
+
+        componentDidCatch(...a) {
+          args = a;
+        }
+
+        render() {
+          if (this.state.hasError) {
+            return <div/>;
+          }
+
+          return this.props.children;
+        }
+      }
+
+      const error = new Error('fetching...');
+      const ComponentInError = () => {
+        throw error;
+      };
+
+      shallow(
+        <ErrorBoundary>
+          <ComponentInError/>
+        </ErrorBoundary>,
+        {
+          mocks: {ComponentInError}
+        }
+      );
+
+      expect(args).toEqual([
+        error,
+        {
+          componentStack:
+            'Please give me idea on how generate componentStack from here'
+        }
+      ]);
+    });
   });
+
   describe('forceUpdate', () => {
     it('should trigger a render whenever shouldComponentUpdate return false', () => {
       class Component extends React.Component {

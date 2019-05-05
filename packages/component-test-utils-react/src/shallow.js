@@ -87,7 +87,11 @@ class ShallowRender {
       reactEl = this._component.type.call(undefined, props);
     }
 
-    this._rendered = render(reactEl, this._config, ShallowRender);
+    try {
+      this._rendered = render(reactEl, this._config, ShallowRender);
+    } catch (e) {
+      this._handleErrorInRender(e);
+    }
 
     // Finish recording the order of hooks by toogling this dispatcher property
     this._dispatcher._informDipatcherRenderIsDone();
@@ -100,6 +104,29 @@ class ShallowRender {
     }
 
     this._prevProps = props;
+  }
+
+  _handleErrorInRender(error) {
+    if (
+      !this._instance ||
+      typeof this._component.type.getDerivedStateFromError !== 'function'
+    ) {
+      throw error;
+    }
+
+    this._instance.state = {
+      ...this._instance.state,
+      ...this._component.type.getDerivedStateFromError(error)
+    };
+
+    this._render();
+
+    if (typeof this._instance.componentDidCatch === 'function') {
+      this._instance.componentDidCatch(error, {
+        componentStack:
+          'Please give me idea on how generate componentStack from here'
+      });
+    }
   }
 
   _handleClassLAfterRenderLifeCycle(firstRender) {
