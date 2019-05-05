@@ -17,6 +17,7 @@ const defaultConfig = {
 
 class ShallowRender {
   constructor(component, config = defaultConfig) {
+    this._unmounted = false;
     this._component = component;
     this._config = config;
     this._dispatcher = createDispatcher(this);
@@ -133,26 +134,54 @@ class ShallowRender {
     this._prevState = this._instance.state;
   }
 
+  _throwIfUnmounted(methodName) {
+    if (this._unmounted) {
+      throw new Error(
+        `Cannot call ${methodName} method when shallowed component is unmounted`
+      );
+    }
+  }
+
   // Methods
   html() {
+    this._throwIfUnmounted('html');
+
     return getHtml(this._rendered);
   }
 
   dispatchEvent(event) {
+    this._throwIfUnmounted('dispatchEvent');
+
     return dispatchEvent(this._rendered, event);
   }
 
   // Alias for dispatchEvent
   trigger(event) {
+    this._throwIfUnmounted('trigger');
+
     return dispatchEvent(this._rendered, event);
   }
 
   setProps(props) {
+    this._throwIfUnmounted('setProps');
+
     this._render(props);
   }
 
   querySelector(selector) {
+    this._throwIfUnmounted('querySelector');
+
     return querySelector(this._rendered, selector, ShallowRender);
+  }
+
+  unmount() {
+    this._unmounted = true;
+    if (
+      this._instance &&
+      typeof this._instance.componentWillUnmount === 'function'
+    ) {
+      this._instance.componentWillUnmount();
+    }
   }
 }
 
