@@ -51,5 +51,16 @@
     "lerna": "^3.13.1",
     "ts-jest": "^24.0.2",
     "typescript": "^3.4.3"
+  },
+  "greenkeeper": {
+    "commitMessages": {
+      "initialBadge": ":pencil: Add Greenkeeper badge",
+      "initialDependencies": ":arrow_up: Update dependencies",
+      "initialBranches": ":tada: Whitelist greenkeeper branches",
+      "dependencyUpdate": ":arrow_up: Update ${dependency} to version ${version}",
+      "devDependencyUpdate": ":arrow_up: Update ${dependency} to version ${version}",
+      "dependencyPin": ":pushpin: Pin ${dependency} to ${oldVersion}",
+      "devDependencyPin": ":pushpin: Pin ${dependency} to ${oldVersion}"
+    }
   }
 }

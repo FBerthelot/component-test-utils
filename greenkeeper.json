@@ -1,0 +1,14 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "package.json",
+        "packages/component-test-utils-angular/package.json",
+        "packages/component-test-utils-react/package.json",
+        "packages/component-test-utils-vuejs/package.json",
+        "packages/component-test-utils/package.json",
+        "website/package.json"
+      ]
+    }
+  }
+}
