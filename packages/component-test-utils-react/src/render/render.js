@@ -12,10 +12,7 @@ const render = (reactEl, config, ShallowRender) => {
   }
 
   if (!isAlreadyMocked && ReactIs.isForwardRef(reactEl)) {
-    const shallowRender = new ShallowRender(
-      reactEl,
-      config
-    );
+    const shallowRender = new ShallowRender(reactEl, config);
 
     return {
       ...shallowRender._rendered,
@@ -30,12 +27,13 @@ const render = (reactEl, config, ShallowRender) => {
 
   const shouldBeMocked =
     typeof reactEl.type === 'function' &&
-    Object.keys(config.mocks).includes(reactEl.type.name);
+    (Object.keys(config.mocks).includes(reactEl.type.name) ||
+      Object.keys(config.mocks).includes(reactEl.type.displayName));
 
   if (!isAlreadyMocked && shouldBeMocked) {
     const shallowRender = new ShallowRender(
       React.createElement(
-        config.mocks[reactEl.type.name],
+        config.mocks[reactEl.type.displayName || reactEl.type.name],
         reactEl.props,
         reactEl.props && reactEl.props.children
       ),

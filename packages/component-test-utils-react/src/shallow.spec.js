@@ -243,7 +243,7 @@ describe('react shallow render', () => {
     });
   });
 
-  describe('dispatchEvent', () => {
+  describe('Event', () => {
     it('should also work with trigger allias', () => {
       const Component = () => {
         const [nbLikes, setNbLike] = React.useState(0);
@@ -646,6 +646,364 @@ describe('react shallow render', () => {
       shallow(<Component/>);
 
       expect(console.debug).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('class lifecycle', () => {
+    it('should call getDerivedStateFromProps function on mounting', () => {
+      class Component extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            initialState: 42
+          };
+        }
+
+        static getDerivedStateFromProps(props) {
+          return {iAmDerivedFromAProps: props.value + 1};
+        }
+
+        render() {
+          return (
+            <div>
+              {this.state.iAmDerivedFromAProps} + {this.state.initialState}
+            </div>
+          );
+        }
+      }
+
+      const cmp = shallow(<Component value={1}/>);
+
+      expect(cmp.html()).toBe('<div>2 + 42</div>');
+    });
+
+    it('should call component did mount after first render', () => {
+      const orderTester = [];
+      class Component extends React.Component {
+        componentDidMount() {
+          orderTester.push('componentDidMount');
+        }
+
+        render() {
+          orderTester.push('render');
+          return <div/>;
+        }
+      }
+
+      shallow(<Component/>);
+
+      expect(orderTester).toEqual(['render', 'componentDidMount']);
+    });
+
+    it('should call getDerivedStateFromProps before a changement of props', () => {
+      class Component extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            initialState: 42
+          };
+        }
+
+        static getDerivedStateFromProps(props) {
+          return {iAmDerivedFromAProps: props.value + 1};
+        }
+
+        render() {
+          return (
+            <div>
+              {this.state.iAmDerivedFromAProps} + {this.state.initialState}
+            </div>
+          );
+        }
+      }
+
+      const cmp = shallow(<Component value={1}/>);
+
+      cmp.setProps({value: 42});
+
+      expect(cmp.html()).toBe('<div>43 + 42</div>');
+    });
+
+    it('should call getSnapshotBeforeUpdate afterEach render', () => {
+      const orderTester = [];
+      class Component extends React.Component {
+        getSnapshotBeforeUpdate() {
+          orderTester.push('getSnapshotBeforeUpdate');
+        }
+
+        render() {
+          orderTester.push('render');
+          return <div/>;
+        }
+      }
+
+      const cmp = shallow(<Component/>);
+      cmp.setProps({value: 42});
+
+      expect(orderTester).toEqual([
+        'render',
+        'render',
+        'getSnapshotBeforeUpdate'
+      ]);
+    });
+
+    it('should call getSnapshotBeforeUpdate with prevProps and prevState', () => {
+      let args;
+      class Component extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {};
+          this.handleClick = this.handleClick.bind(this);
+        }
+
+        getSnapshotBeforeUpdate(...a) {
+          args = a;
+        }
+
+        handleClick() {
+          this.setState({
+            nextState: true
+          });
+        }
+
+        render() {
+          return (
+            <div onClick={this.handleClick}>
+              {this.props.value} {this.state.nextState}
+            </div>
+          );
+        }
+      }
+
+      const cmp = shallow(<Component value={1}/>);
+
+      cmp.setProps({value: 42});
+
+      expect(args).toEqual([{value: 1}, {}]);
+
+      cmp.dispatchEvent('Click');
+
+      expect(args).toEqual([{value: 42}, {}]);
+    });
+  });
+
+  describe('componentDidUpdate', () => {
+    it('should call componentDidMount just after getSnapshotBeforeUpdate', () => {
+      const orderTester = [];
+      class Component extends React.Component {
+        getSnapshotBeforeUpdate() {
+          orderTester.push('getSnapshotBeforeUpdate');
+        }
+
+        componentDidUpdate() {
+          orderTester.push('componentDidUpdate');
+        }
+
+        render() {
+          orderTester.push('render');
+          return <div/>;
+        }
+      }
+
+      const cmp = shallow(<Component/>);
+      cmp.setProps({value: 42});
+
+      expect(orderTester).toEqual([
+        'render',
+        'render',
+        'getSnapshotBeforeUpdate',
+        'componentDidUpdate'
+      ]);
+    });
+
+    it('should call getSnapshotBeforeUpdate with prevProps and prevState and result from snapshot', () => {
+      let args;
+      class Component extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {};
+          this.handleClick = this.handleClick.bind(this);
+        }
+
+        getSnapshotBeforeUpdate() {
+          return 69;
+        }
+
+        componentDidUpdate(...a) {
+          args = a;
+        }
+
+        handleClick() {
+          this.setState({
+            nextState: true
+          });
+        }
+
+        render() {
+          return (
+            <div onClick={this.handleClick}>
+              {this.props.value} {this.state.nextState}
+            </div>
+          );
+        }
+      }
+
+      const cmp = shallow(<Component value={1}/>);
+
+      cmp.setProps({value: 42});
+
+      expect(args).toEqual([{value: 1}, {}, 69]);
+
+      cmp.dispatchEvent('Click');
+
+      expect(args).toEqual([{value: 42}, {}, 69]);
+    });
+  });
+
+  describe('shouldComponentUpdate', () => {
+    it('should call shouldComponentUpdate before rendering', () => {
+      const orderTester = [];
+      class Component extends React.Component {
+        shouldComponentUpdate() {
+          orderTester.push('shouldComponentUpdate');
+          return false;
+        }
+
+        render() {
+          orderTester.push('render');
+          return <div>{this.props.value}</div>;
+        }
+      }
+
+      const cmp = shallow(<Component value={1}/>);
+
+      cmp.setProps({value: 42});
+
+      expect(orderTester).toEqual(['render', 'shouldComponentUpdate']);
+    });
+
+    it('should not rerender if shouldComponentUpdate return false', () => {
+      class Component extends React.Component {
+        shouldComponentUpdate() {
+          return false;
+        }
+
+        render() {
+          return <div>{this.props.value}</div>;
+        }
+      }
+
+      const cmp = shallow(<Component value={1}/>);
+
+      cmp.setProps({value: 42});
+
+      expect(cmp.html()).toEqual('<div>1</div>');
+    });
+
+    it('should rerender if shouldComponentUpdate return true', () => {
+      class Component extends React.Component {
+        shouldComponentUpdate() {
+          return true;
+        }
+
+        render() {
+          return <div>{this.props.value}</div>;
+        }
+      }
+
+      const cmp = shallow(<Component value={1}/>);
+
+      cmp.setProps({value: 42});
+
+      expect(cmp.html()).toEqual('<div>42</div>');
+    });
+
+    it('should give nextProps and nextState to shouldComponentUpdate method', () => {
+      let args;
+      class Component extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {};
+          this.handleClick = this.handleClick.bind(this);
+        }
+
+        shouldComponentUpdate(...a) {
+          args = a;
+        }
+
+        handleClick() {
+          this.setState({
+            nextState: true
+          });
+        }
+
+        render() {
+          return (
+            <div onClick={this.handleClick}>
+              {this.props.value} {this.state.nextState}
+            </div>
+          );
+        }
+      }
+
+      const cmp = shallow(<Component value={1}/>);
+
+      cmp.setProps({value: 42});
+
+      expect(args).toEqual([{value: 42}, {}]);
+
+      cmp.dispatchEvent('Click');
+
+      expect(args).toEqual([{value: 42}, {nextState: true}]);
+    });
+  });
+
+  describe('unmount', () => {
+    // TODO add doc
+  });
+
+  describe('getDerivedStateFromError', () => {
+    // TODO
+  });
+  describe('componentDidCatch', () => {
+    // TODO
+  });
+  describe('forceUpdate', () => {});
+
+  describe('displayName', () => {
+    it('should ovewrite the name displayed by html method', () => {
+      const hoc = Cmp => props => <Cmp {...props} hoc/>;
+      const Decorated = () => <div/>;
+
+      const ComponentDecorated = hoc(Decorated);
+
+      ComponentDecorated.displayName = 'withHoc(Component)';
+
+      const Component = () => <ComponentDecorated/>;
+
+      const cmp = shallow(<Component/>, {
+        mocks: {
+          'withHoc(Component)': ComponentDecorated
+        }
+      });
+
+      expect(cmp.html()).toBe(
+        '<withHoc(Component)><Decorated hoc/></withHoc(Component)>'
+      );
+    });
+  });
+
+  describe('defaultProps', () => {
+    it('should initialize component with default props', () => {
+      const Component = ({value}) => <div>{value}</div>;
+
+      Component.defaultProps = {
+        value: 42
+      };
+
+      const cmp = shallow(<Component/>);
+
+      expect(cmp.html()).toBe('<div>42</div>');
     });
   });
 });

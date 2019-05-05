@@ -45,7 +45,10 @@ export class Updater {
       return;
     }
 
-    const newState = typeof setSateArg === 'function' ? setSateArg(publicInstance.state) : setSateArg;
+    const newState =
+      typeof setSateArg === 'function' ?
+        setSateArg(publicInstance.state) :
+        setSateArg;
 
     publicInstance.state = {
       ...publicInstance.state,

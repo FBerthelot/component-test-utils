@@ -15,6 +15,10 @@ function buildPropsString(props, reactEl) {
           return `${keyString}="[${functionName}]"`;
         }
 
+        if (reactEl.props[key] === true) {
+          return keyString;
+        }
+
         return `${keyString}="${reactEl.props[key]}"`;
       })
       .join(' ')}` :
@@ -30,7 +34,11 @@ function getTagname(reactEl) {
     return '';
   }
 
-  return reactEl.type.name || reactEl.type.$$typeof.toString();
+  return (
+    reactEl.type.displayName ||
+    reactEl.type.name ||
+    reactEl.type.$$typeof.toString()
+  );
 }
 
 function buildHtmlEl(reactEl) {

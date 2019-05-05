@@ -25,6 +25,8 @@ class ShallowRender {
   }
 
   _render(customProps) {
+    let firstRender = false;
+
     const prevDispatcher = ReactCurrentDispatcher.current;
     ReactCurrentDispatcher.current = this._dispatcher;
 
@@ -34,26 +36,43 @@ class ShallowRender {
 
     let reactEl;
 
-    const props = customProps || this._component.props;
+    const props =
+      customProps ||
+      (this._instance && this._instance.props) ||
+      this._component.props;
 
     if (isClassComponent(this._component.type)) {
       if (!this._instance) {
         const updater = new Updater(this);
         // eslint-disable-next-line new-cap
-        this._instance = new this._component.type(
-          props,
-          {},
-          updater
-        );
-        this._instance.props = props;
+        this._instance = new this._component.type(props, {}, updater);
         this._instance.state = this._instance.state || null;
         this._instance.updater = updater;
+        firstRender = true;
       }
 
-      /*      If (typeof this._instance.componentWillMount === 'function') {
-        this._instance.componentWillMount();
+      if (typeof this._component.type.getDerivedStateFromProps === 'function') {
+        this._instance.state = {
+          ...this._instance.state,
+          ...this._component.type.getDerivedStateFromProps(
+            props,
+            this._instance.state
+          )
+        };
       }
-*/
+
+      this._instance.props = props;
+
+      if (
+        !firstRender &&
+        typeof this._instance.shouldComponentUpdate === 'function' &&
+        !this._instance.shouldComponentUpdate(
+          this._instance.props,
+          this._instance.state
+        )
+      ) {
+        return;
+      }
 
       reactEl = this._instance.render();
     } else if (ReactIs.isForwardRef(this._component)) {
@@ -75,8 +94,43 @@ class ShallowRender {
 
     // Pop all callback and invoke theme (only for class components)
     if (this._instance) {
-      this._instance.updater._invokeCallbacks();
+      this._handleClassLAfterRenderLifeCycle(firstRender);
     }
+
+    this._prevProps = props;
+  }
+
+  _handleClassLAfterRenderLifeCycle(firstRender) {
+    this._instance.updater._invokeCallbacks();
+
+    if (firstRender && typeof this._instance.componentDidMount === 'function') {
+      this._instance.componentDidMount();
+    }
+
+    let snapshot;
+
+    if (
+      !firstRender &&
+      typeof this._instance.getSnapshotBeforeUpdate === 'function'
+    ) {
+      snapshot = this._instance.getSnapshotBeforeUpdate(
+        this._prevProps,
+        this._prevState
+      );
+    }
+
+    if (
+      !firstRender &&
+      typeof this._instance.componentDidUpdate === 'function'
+    ) {
+      this._instance.componentDidUpdate(
+        this._prevProps,
+        this._prevState,
+        snapshot
+      );
+    }
+
+    this._prevState = this._instance.state;
   }
 
   // Methods
