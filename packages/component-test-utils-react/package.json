@@ -24,7 +24,7 @@
   "homepage": "https://github.com/FBerthelot/component-test-utils#readme",
   "dependencies": {
     "enzyme": "^3.7.0",
-    "jsdom": "^12.2.0",
+    "jsdom": "^15.0.0",
     "react-dom": "^16.5.2",
     "react-is": "^16.5.2"
   },
