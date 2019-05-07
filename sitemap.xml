@@ -14,4 +14,5 @@
 <url> <loc>https://component-test-utils.berthelot.io/docs/shallow/html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://component-test-utils.berthelot.io/docs/shallow/html" /> </url>
 <url> <loc>https://component-test-utils.berthelot.io/docs/shallow/querySelector</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://component-test-utils.berthelot.io/docs/shallow/querySelector" /> </url>
 <url> <loc>https://component-test-utils.berthelot.io/docs/shallow/setProps</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://component-test-utils.berthelot.io/docs/shallow/setProps" /> </url>
+<url> <loc>https://component-test-utils.berthelot.io/docs/shallow/unmount</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://component-test-utils.berthelot.io/docs/shallow/unmount" /> </url>
 </urlset>
