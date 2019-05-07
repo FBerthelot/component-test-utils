@@ -18,4 +18,4 @@ Your commit message needs to start with the type, followed by the subject like s
 
 ## <a name="submit-pr"></a> Submitting a Pull Request (PR)
 
-Open a pull request (PR) every time you are developping a feature or modifying something in the project.
+Open a pull request (PR) every time you are developing a feature or modifying something in the project.

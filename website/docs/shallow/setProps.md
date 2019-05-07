@@ -1,4 +1,4 @@
-## dispatchEvent()
+## setProps()
 
 - Arguments:
   - {object} props The new props to send to the component
