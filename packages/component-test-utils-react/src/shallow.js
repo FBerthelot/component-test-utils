@@ -94,7 +94,7 @@ class ShallowRender {
     }
 
     // Finish recording the order of hooks by toogling this dispatcher property
-    this._dispatcher._informDipatcherRenderIsDone();
+    this._dispatcher._informDispatcherRenderIsDone();
 
     ReactCurrentDispatcher.current = prevDispatcher;
 

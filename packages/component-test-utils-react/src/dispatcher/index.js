@@ -16,7 +16,7 @@ class Dispatcher {
     this._isRendering = true;
   }
 
-  _informDipatcherRenderIsDone() {
+  _informDispatcherRenderIsDone() {
     this._currentHookIndex = 0;
     this._firstCall = false;
     this._isRendering = false;

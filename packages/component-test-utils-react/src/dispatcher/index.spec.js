@@ -27,7 +27,7 @@ describe('dispatcher', () => {
       const [initialState, setState] = dispatcher.useState(0);
 
       setState(4);
-      dispatcher._informDipatcherRenderIsDone();
+      dispatcher._informDispatcherRenderIsDone();
 
       const [finalState] = dispatcher.useState(0);
 
@@ -47,9 +47,9 @@ describe('dispatcher', () => {
     it('should call useEffect each time a render apear when non memoization is set', () => {
       const useEffectFn = jest.fn();
       dispatcher.useEffect(useEffectFn);
-      dispatcher._informDipatcherRenderIsDone();
+      dispatcher._informDispatcherRenderIsDone();
       dispatcher.useEffect(useEffectFn);
-      dispatcher._informDipatcherRenderIsDone();
+      dispatcher._informDispatcherRenderIsDone();
 
       expect(useEffectFn).toHaveBeenCalledTimes(2);
       dispatcher.useEffect(useEffectFn);
@@ -59,10 +59,10 @@ describe('dispatcher', () => {
     it('should call useEffect when a render apear and when props changes', () => {
       const useEffectFn = jest.fn();
       dispatcher.useEffect(useEffectFn, [0, 1]);
-      dispatcher._informDipatcherRenderIsDone();
+      dispatcher._informDispatcherRenderIsDone();
 
       dispatcher.useEffect(useEffectFn, [0, 1]);
-      dispatcher._informDipatcherRenderIsDone();
+      dispatcher._informDispatcherRenderIsDone();
 
       expect(useEffectFn).toHaveBeenCalledTimes(1);
 
@@ -115,7 +115,7 @@ describe('dispatcher', () => {
 
       expect(state1.count).toBe(0);
 
-      dispatcher._informDipatcherRenderIsDone();
+      dispatcher._informDispatcherRenderIsDone();
       dispatch({count: 45});
 
       const [state2] = dispatcher.useReducer(arg => arg, initialState);
@@ -148,7 +148,7 @@ describe('dispatcher', () => {
         [1]
       );
 
-      dispatcher._informDipatcherRenderIsDone();
+      dispatcher._informDispatcherRenderIsDone();
       const memoizedCallback2 = dispatcher.useCallback(
         jest.fn(() => countFn()),
         [2]
@@ -165,7 +165,7 @@ describe('dispatcher', () => {
         [1]
       );
 
-      dispatcher._informDipatcherRenderIsDone();
+      dispatcher._informDispatcherRenderIsDone();
       const memoizedCallback2 = dispatcher.useCallback(
         jest.fn(() => countFn()),
         [1]
@@ -187,7 +187,7 @@ describe('dispatcher', () => {
 
     it('should computeValue each time when no memo is send', () => {
       dispatcher.useMemo(() => computeExpensiveValue());
-      dispatcher._informDipatcherRenderIsDone();
+      dispatcher._informDispatcherRenderIsDone();
       const computedNTime = dispatcher.useMemo(() => computeExpensiveValue());
 
       expect(computedNTime).toBe(2);
@@ -195,7 +195,7 @@ describe('dispatcher', () => {
 
     it('should computeValue each time when different memo is send', () => {
       dispatcher.useMemo(() => computeExpensiveValue(), [1]);
-      dispatcher._informDipatcherRenderIsDone();
+      dispatcher._informDispatcherRenderIsDone();
       const computedNTime = dispatcher.useMemo(() => computeExpensiveValue(), [
         2
       ]);
@@ -205,7 +205,7 @@ describe('dispatcher', () => {
 
     it('should computeValue one time when same memo is send', () => {
       dispatcher.useMemo(() => computeExpensiveValue(), [1]);
-      dispatcher._informDipatcherRenderIsDone();
+      dispatcher._informDispatcherRenderIsDone();
       const computedNTime = dispatcher.useMemo(() => computeExpensiveValue(), [
         1
       ]);
@@ -224,7 +224,7 @@ describe('dispatcher', () => {
       const object = {};
       dispatcher.useRef(object);
       object.focus = true;
-      dispatcher._informDipatcherRenderIsDone();
+      dispatcher._informDispatcherRenderIsDone();
       const result = dispatcher.useRef(object);
 
       expect(result.current).toBe(object);
@@ -251,11 +251,11 @@ describe('dispatcher', () => {
 
       const ref = dispatcher.useRef({});
       dispatcher.useImperativeHandle(ref, objectBuilder, [1]);
-      dispatcher._informDipatcherRenderIsDone();
+      dispatcher._informDispatcherRenderIsDone();
 
       dispatcher.useRef({});
       dispatcher.useImperativeHandle(ref, objectBuilder, [1]);
-      dispatcher._informDipatcherRenderIsDone();
+      dispatcher._informDispatcherRenderIsDone();
 
       expect(objectBuilder).toHaveBeenCalledTimes(1);
 
