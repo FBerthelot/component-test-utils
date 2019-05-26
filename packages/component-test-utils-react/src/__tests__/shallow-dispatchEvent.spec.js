@@ -14,7 +14,7 @@ describe('shallow - trigger/dispatchEvent', () => {
 
     const cmp = shallow(<Component/>);
 
-    cmp.trigger('Click');
+    cmp.trigger('click');
 
     expect(cmp.html()).toBe(
       '<button type="button" onClick="[onClick]">1</button>'
@@ -33,7 +33,7 @@ describe('shallow - trigger/dispatchEvent', () => {
 
     const cmp = shallow(<Component/>);
 
-    cmp.dispatchEvent('Click');
+    cmp.dispatchEvent('click');
 
     expect(cmp.html()).toBe(
       '<button type="button" onClick="[onClick]">1</button>'
@@ -64,7 +64,7 @@ describe('shallow - trigger/dispatchEvent', () => {
     }
 
     const cmp = shallow(<Component/>);
-    cmp.dispatchEvent('Click');
+    cmp.dispatchEvent('click');
 
     expect(cmp.html()).toBe(
       '<button type="button" onClick="[bound handleClick]">42</button>'
@@ -98,7 +98,7 @@ describe('shallow - trigger/dispatchEvent', () => {
 
     const cmp = shallow(<Component/>);
 
-    cmp.dispatchEvent('Click');
+    cmp.dispatchEvent('click');
 
     expect(cmp.html()).toBe(
       '<button type="button" onClick="[bound handleClick]">1</button>'
@@ -125,7 +125,7 @@ describe('shallow - trigger/dispatchEvent', () => {
 
     const cmp = shallow(<Component/>);
 
-    cmp.dispatchEvent('Click');
+    cmp.dispatchEvent('click');
 
     expect(cmp.html()).toBe(
       '<button type="button" onClick="[onClick]">4 - 7</button>'
