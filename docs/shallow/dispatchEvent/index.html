@@ -72,8 +72,8 @@
 
 <span class="hljs-keyword">const</span> cmp = shallow(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Component</span> /&gt;</span>);
 
-cmp.dispatchEvent('Click');
-// cmp.trigger('Click'); is equivalent
+cmp.dispatchEvent('click');
+// cmp.trigger('click'); is equivalent
 
 expect(cmp.html()).toBe('<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">"[onClick]"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>');
 </span></code></pre>
