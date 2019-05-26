@@ -2,14 +2,18 @@
 title: Documentation
 ---
 
-## Main concept of testing component
+Component-test-utils is an opinionated test framework.
 
-Unit testing component can be hard.
+## Why should you use it ?
 
-First thing to do is to understand what a component is.
+It mocks your favorite framework in a way that allows to write sustainable and functional oriented tests of your components.
 
-// TODO illustration of a component.
+Because component-test-utils consider each component as a black box, you won't be able to get access to your components state.
+It will force you to make assertion on the generated view.
 
-When testing a component consider to expect change when changing parameter.
-Component internal state never have to be accessed directly, you must always do check on HTML.
-When you want test internal state, you only want to test the behavior of the component, so let's trigger some events on the interface !
+## My Favorite framework is supported ?
+
+- _React_: Yes !
+- ... more is coming
+
+That's all at the moment. If you want your framework in this list consider contributing to this project [on github](https://github.com/FBerthelot/component-test-utils) :)

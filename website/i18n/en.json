@@ -40,6 +40,9 @@
       },
       "shallow/setProps": {
         "title": "shallow/setProps"
+      },
+      "shallow/unmount": {
+        "title": "shallow/unmount"
       }
     },
     "links": {

@@ -22,7 +22,7 @@ const users = [
 
 const siteConfig = {
   title: 'Component test utils',
-  tagline: 'Test component in stadardized way',
+  tagline: 'Test component in standardized way',
   url: 'https://component-test-utils.berthelot.io',
   cname: 'component-test-utils.berthelot.io', // Your website URL
   baseUrl: '/', // Base URL for your project */
