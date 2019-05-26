@@ -1,7 +1,11 @@
 const {getHtml} = require('./html');
 
 exports.dispatchEvent = (reactTree, eventName) => {
-  if (!reactTree.props[`on${eventName}`]) {
+  const eventNameCaseOk = `${eventName
+    .charAt(0)
+    .toUpperCase()}${eventName.slice(1)}`;
+
+  if (!reactTree.props[`on${eventNameCaseOk}`]) {
     throw new Error(
       `Cannot dispatch event "${eventName}" on this node : ${getHtml({
         ...reactTree,
@@ -13,5 +17,5 @@ exports.dispatchEvent = (reactTree, eventName) => {
     );
   }
 
-  reactTree.props[`on${eventName}`]();
+  reactTree.props[`on${eventNameCaseOk}`]();
 };

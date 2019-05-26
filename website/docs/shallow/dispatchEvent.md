@@ -22,8 +22,8 @@ const Component = () => {
 
 const cmp = shallow(<Component />);
 
-cmp.dispatchEvent('Click');
-// cmp.trigger('Click'); is equivalent
+cmp.dispatchEvent('click');
+// cmp.trigger('click'); is equivalent
 
 expect(cmp.html()).toBe('<button type="button" onClick="[onClick]">1</button>');
 ```
