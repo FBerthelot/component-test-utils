@@ -13,6 +13,7 @@ Here is the list of available options:
 
 - {Object} `mocks` The key is the property name, and the value his value.
 - {Boolean} `blackList` If true each component will not be mocked as in default mode (whiteList). In this mode you will have to explicitly give to shallow configuration object the list of components to not mock.
+- {Object} `events` The key is the event name, the value should be a spy
 
 ### Examples
 
@@ -87,3 +88,5 @@ it('it should only mock ChildrenComponent2', () => {
   expect(cmp.html()).toBe('<div><ChildrenComponent><div><ChildrenComponent2/></div></ChildrenComponent></div>');
 });
 ```
+
+##### Event listening (with jest)

@@ -17,7 +17,7 @@ const isSelectedObject = (elem, selector) => {
   return elem.type === selector;
 };
 
-exports.querySelector = (shallowedComponent, selector, ShallowRender) => {
+exports.querySelector = (shallowedComponent, selector, ShallowRender, getView) => {
   // When the children is not an array nor an object, impossible to target it !
   if (
     !shallowedComponent.props ||
@@ -34,7 +34,7 @@ exports.querySelector = (shallowedComponent, selector, ShallowRender) => {
     isSelectedObject(children, selector) && children;
 
   if (!targetedComponent) {
-    return new EmptyShallowedComponent(selector);
+    return new EmptyShallowedComponent(selector, getView());
   }
 
   const WrapperComponent = () => {
