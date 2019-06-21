@@ -1,5 +1,6 @@
 const React = require('react');
 const ReactIs = require('react-is');
+const {shouldBeRender} = require('./render.utils');
 
 const render = (reactEl, config, ShallowRender) => {
   if (!reactEl || typeof reactEl !== 'object') {
@@ -25,15 +26,10 @@ const render = (reactEl, config, ShallowRender) => {
     reactEl.type._context._currentValue = reactEl.props.value;
   }
 
-  const shouldBeMocked =
-    typeof reactEl.type === 'function' &&
-    (Object.keys(config.mocks).includes(reactEl.type.name) ||
-      Object.keys(config.mocks).includes(reactEl.type.displayName));
-
-  if (!isAlreadyMocked && shouldBeMocked) {
+  if (!isAlreadyMocked && shouldBeRender(reactEl, config)) {
     const shallowRender = new ShallowRender(
       React.createElement(
-        config.mocks[reactEl.type.displayName || reactEl.type.name],
+        (config.mocks && config.mocks[reactEl.type.displayName || reactEl.type.name]) || reactEl.type,
         reactEl.props,
         reactEl.props && reactEl.props.children
       ),
