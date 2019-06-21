@@ -1,13 +1,175 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Philosophy about component testing · Component test utils</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;how-to-test-component&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#how-to-test-component&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;How to test component ?&lt;/h2&gt;
-"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Philosophy about component testing · Component test utils"/><meta property="og:type" content="website"/><meta property="og:url" content="https://component-test-utils.berthelot.io/index.html"/><meta property="og:description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;how-to-test-component&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#how-to-test-component&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;How to test component ?&lt;/h2&gt;
-"/><meta property="og:image" content="https://component-test-utils.berthelot.io/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://component-test-utils.berthelot.io/img/logo.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://component-test-utils.berthelot.io/blog/atom.xml" title="Component test utils Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://component-test-utils.berthelot.io/blog/feed.xml" title="Component test utils Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.svg" alt="Component test utils"/><h2 class="headerTitleWithLogo">Component test utils</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavItemActive"><a href="/docs/philosophy" target="_self">Philosphy</a></li><li class=""><a href="/docs/concept" target="_self">Doc</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Philosophy about component testing</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="how-to-test-component"></a><a href="#how-to-test-component" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to test component ?</h2>
-<p>Before answer to this question, we need to answer to the question: &quot;what is a component ?&quot;.</p>
-<p>A component is a Custom HTML Component that produce a view (aka. a piece of others HTML Component).
-To produce the view Component take properties and his internal state.</p>
-<p>To sum up, a component is like a JavaScript function that take two arguments, the state and the props.</p>
-<p>It's ineffective to try change the state of the component manually in test.</p>
-<h2><a class="anchor" aria-hidden="true" id="what-is-the-kind-of-test-i-can-do-with-component-test-utils"></a><a href="#what-is-the-kind-of-test-i-can-do-with-component-test-utils" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is the kind of test I can do with component-test-utils ?</h2>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Philosophy about component testing · Component test utils</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;philosophy-of-testing&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#philosophy-of-testing&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Philosophy of testing&lt;/h2&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Philosophy about component testing · Component test utils"/><meta property="og:type" content="website"/><meta property="og:url" content="https://component-test-utils.berthelot.io/index.html"/><meta property="og:description" content="&lt;h2&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;philosophy-of-testing&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#philosophy-of-testing&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Philosophy of testing&lt;/h2&gt;
+"/><meta property="og:image" content="https://component-test-utils.berthelot.io/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://component-test-utils.berthelot.io/img/logo.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://component-test-utils.berthelot.io/blog/atom.xml" title="Component test utils Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://component-test-utils.berthelot.io/blog/feed.xml" title="Component test utils Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.svg" alt="Component test utils"/><h2 class="headerTitleWithLogo">Component test utils</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavItemActive"><a href="/docs/philosophy" target="_self">Philosphy</a></li><li class=""><a href="/docs/concept" target="_self">Doc</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Philosophy about component testing</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="philosophy-of-testing"></a><a href="#philosophy-of-testing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Philosophy of testing</h2>
+<p>Before introducing the way you can test your front-end application, we need to share the same definitions.</p>
+<h2><a class="anchor" aria-hidden="true" id="types-of-tests"></a><a href="#types-of-tests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Types of tests</h2>
+<p>Component-test-utils assumes these approximative definitions well-fitted for component testing:</p>
+<ul>
+<li><em>Unit Test</em>: Test that stay in memory. (No access to: HTTP, File System, ...)</li>
+<li><em>Integration test</em>: Test that can access to other things than memory (Network, I/O).</li>
+<li><em>End to End test</em>: It's basically an integration test with a special rule. No Mock or Stub allowed.</li>
+</ul>
 <p>You can do both unit and integration test with component test-utils.
-The only test type you cannot do is end-to-end testing because component-test-util rely on some mocking solution.</p>
-<p>To have more information on testing, you can check these slides (in french) : <a href="https://slides.com/florentberthelot/test-composants-web#/">https://slides.com/florentberthelot/test-composants-web#/</a></p>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#how-to-test-component">How to test component ?</a></li><li><a href="#what-is-the-kind-of-test-i-can-do-with-component-test-utils">What is the kind of test I can do with component-test-utils ?</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo.svg" alt="Component test utils" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/getting-started.html">Getting Started</a><a href="/docs/api.html">API Reference</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/FBerthelot/component-test-utils">GitHub</a><a class="github-button" href="https://github.com/FBerthelot/component-test-utils" data-icon="octicon-star" data-count-href="/FBerthelot/react-test-utils/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">MIT Copyright © 2019 Florent Berthelot</section></footer></div></body></html>
+The only test type you cannot do is end-to-end testing because component-test-utils is basically a mock of your favorite framework.</p>
+<h3><a class="anchor" aria-hidden="true" id="component-take-props-as-input"></a><a href="#component-take-props-as-input" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Component take props as input</h3>
+<p>No matter the JavaScript framework (Vanilla, Vue.js, Angular, React, ...) you use, they share some common vision of what a component should be.</p>
+<p>A component is a custom HTML element that produces a view (aka. a piece of others Component and HTML elements).</p>
+<p><img src="/img/component_view.gif" alt="Component that generate view"></p>
+<p>This component can receive parameters just like a function. Usually those parameters are called properties or props.</p>
+<p><img src="/img/component_props.gif" alt="Component that generate view according props"></p>
+<p>Those props can produce a different view according to each props value.</p>
+<p>As the render only depends on the props, no matter the framework you use, the easiest testing strategy is to write tests to assert the rendered view according to the different props value.</p>
+<p>This can easily be achieved with component-test-utils. For example, if you consider testing a “like” button:</p>
+<pre><code class="hljs css language-js">describe(<span class="hljs-string">'like button component'</span>, () =&gt; {
+  it(<span class="hljs-string">'should render a button with "1 like" when the props `nbLikes` is set to 1'</span>, () =&gt; {
+    <span class="hljs-keyword">const</span> component = shallow(Component, {<span class="hljs-attr">props</span>: {<span class="hljs-attr">nbLikes</span>: <span class="hljs-number">1</span>}});
+
+    expect(component.html()).toContain(<span class="hljs-string">'1 like'</span>);
+  });
+
+  it(<span class="hljs-string">'should render a button with "2 likes" when the props `nbLikes` is set to 2'</span>, () =&gt; {
+    <span class="hljs-keyword">const</span> component = shallow(Component, {<span class="hljs-attr">props</span>: {<span class="hljs-attr">nbLikes</span>: <span class="hljs-number">2</span>}});
+
+    expect(component.html()).toContain(<span class="hljs-string">'2 likes'</span>);
+  });
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="statefull-component"></a><a href="#statefull-component" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Statefull component</h3>
+<p>Unfortunately, components can sometimes be a bit more complex. For example when they have their own state.
+Considering the previous example, imagine the like button has different styles depending on whether or not the user have liked the related content.</p>
+<p>Because component-test-utils considers each component as a black box, you cannot modify or access their internal state.</p>
+<p>Instead, you have to trigger an internal event from the view itself !</p>
+<p><img src="/img/component_state.gif" alt="Statefull component"></p>
+<p>For example, if you want to test the different styles of your “like” button :</p>
+<pre><code class="hljs css language-javascript">describe(<span class="hljs-string">'like button style'</span>, () =&gt; {
+  it(<span class="hljs-string">'should set button to notLiked by default'</span>, () =&gt; {
+    <span class="hljs-keyword">const</span> component = shallow(Component, {<span class="hljs-attr">props</span>: {<span class="hljs-attr">nbLikes</span>: <span class="hljs-number">1</span>}});
+
+    component.querySelector(<span class="hljs-string">'button'</span>).dispatchEvent(<span class="hljs-string">'click'</span>);
+
+    expect(component.html().querySelector(<span class="hljs-string">'button'</span>).props.class).not.toContain(
+      <span class="hljs-string">'liked'</span>
+    );
+  });
+
+  it(<span class="hljs-string">'should set button to liked when clicking on the button'</span>, () =&gt; {
+    <span class="hljs-keyword">const</span> component = shallow(Component, {<span class="hljs-attr">props</span>: {<span class="hljs-attr">nbLikes</span>: <span class="hljs-number">1</span>}});
+
+    component.querySelector(<span class="hljs-string">'button'</span>).dispatchEvent(<span class="hljs-string">'click'</span>);
+
+    expect(component.html().querySelector(<span class="hljs-string">'button'</span>).props.class).toContain(
+      <span class="hljs-string">'liked'</span>
+    );
+  });
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="component-event-output"></a><a href="#component-event-output" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Component, event output</h3>
+<p><strong>Important: React being the only rendering library currently supported, these features are not implemented yet as they're not needed in react</strong></p>
+<p>Because components sometimes need to talk with parent components, frameworks usually use an event based system to setup an upward communication channel between components and their parents.</p>
+<p><img src="/img/component_event.png" alt="Component that emit event"></p>
+<p>To ensure your component emit the right event, you can attach spies to components and test if they have been called.</p>
+<pre><code class="hljs css language-javascript">describe(<span class="hljs-string">'like button - onLike event'</span>, () =&gt; {
+  it(<span class="hljs-string">'should emit onClick Event'</span>, () =&gt; {
+    <span class="hljs-keyword">const</span> spy = createSpy();
+    <span class="hljs-comment">// const spy = jest.fn(); using jest</span>
+    <span class="hljs-keyword">const</span> component = shallow(Component, {<span class="hljs-attr">events</span>: {onLike}});
+
+    component.querySelector(<span class="hljs-string">'button'</span>).dispatchEvent(<span class="hljs-string">'click'</span>);
+
+    expect(spy).toHaveBeenCalled();
+  });
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="component-with-externals"></a><a href="#component-with-externals" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Component with externals</h3>
+<p><strong>Important: React being the only rendering library currently supported, these features are not implemented yet as they're not needed in react</strong></p>
+<p>For example, Angular component can inject services in the constructor of the components.</p>
+<p>To inject services, mixins, etc, an external key to the <a href="/shallow/constructor#options">shallow configuration object</a> is available. The content of externals object is specific to the framework you are testing. It gives you the opportunity to provide some non-standardized data to a component.</p>
+<p>This part is the only framework specific thing you will have to learn for testing with component-test-utils !</p>
+<p><img src="/img/component_externals.png" alt="Component with externals"></p>
+<p>An example :</p>
+<pre><code class="hljs css language-javascript">describe(<span class="hljs-string">'user component'</span>, () =&gt; {
+  it(<span class="hljs-string">'should display the user retrieves from the service'</span>, () =&gt; {
+    <span class="hljs-keyword">const</span> component = shallow(Component, {
+      <span class="hljs-attr">externals</span>: {
+        <span class="hljs-attr">userService</span>: {
+          <span class="hljs-attr">getUser</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">Promise</span>.resolve({<span class="hljs-attr">name</span>: <span class="hljs-string">'component-test-utils'</span>})
+        }
+      }
+    });
+
+    expect(component).toContain(<span class="hljs-string">'component-test-utils'</span>);
+  });
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="mocking-strategies"></a><a href="#mocking-strategies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Mocking strategies</h3>
+<p>Components doesn't only generate HTML element, they can have sub-components in their view. For this kind of &quot;parent&quot; component, here is the main question developers should ask themselves: &quot;should I mock this child component ?&quot;.</p>
+<p>In this case, Component-test-utils provides two ways to create a component in a test environment:</p>
+<ul>
+<li><em>White list</em>: Every sub-component is mocked, you can give a list a component that won't be mocked and give their mock.</li>
+<li><em>Black list</em>: No sub-component is mocked, you can specify which component should be mocked.</li>
+</ul>
+<p>Given these components:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> postListRender = <span class="hljs-function">(<span class="hljs-params">{posts}</span>) =&gt;</span> <span class="hljs-string">`
+  &lt;div&gt;
+    <span class="hljs-subst">${posts.map(postData =&gt; <span class="hljs-string">`&lt;Post data={postData}/&gt;`</span>)}</span>
+    &lt;OtherComponent /&gt;
+  &lt;/div&gt;
+`</span>;
+
+<span class="hljs-keyword">const</span> postRender = <span class="hljs-function">(<span class="hljs-params">{data}</span>) =&gt;</span> <span class="hljs-string">`
+  &lt;article&gt;
+    &lt;h1&gt;<span class="hljs-subst">${data.title}</span>&lt;/h1&gt;
+    &lt;p&gt;<span class="hljs-subst">${data.content}</span>&lt;/p&gt;
+  &lt;/article&gt;
+`</span>;
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="white-list-default"></a><a href="#white-list-default" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>White list (default)</h4>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> cmp = shallow(postListRender, {
+  <span class="hljs-attr">props</span>: {
+    <span class="hljs-attr">posts</span>: [
+      {<span class="hljs-attr">title</span>: <span class="hljs-string">'post1'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'content1'</span>},
+      {<span class="hljs-attr">title</span>: <span class="hljs-string">'post2'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'content2'</span>},
+    ]
+  },
+  <span class="hljs-attr">mocks</span>: {
+    <span class="hljs-attr">OtherComponent</span>: <span class="hljs-string">`&lt;div&gt;OtherComponent&lt;/div&gt;`</span>
+  }
+});
+
+cmp.html() === <span class="hljs-string">`
+  &lt;div&gt;
+    &lt;Post /&gt;
+    &lt;Post /&gt;
+    &lt;div&gt;OtherComponent&lt;/div&gt;
+  &lt;/div&gt;
+`</span>;
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="black-list"></a><a href="#black-list" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Black list</h4>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> cmp = shallow(postListRender, {
+  <span class="hljs-attr">props</span>: {
+    <span class="hljs-attr">posts</span>: [
+      {<span class="hljs-attr">title</span>: <span class="hljs-string">'post1'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'content1'</span>},
+      {<span class="hljs-attr">title</span>: <span class="hljs-string">'post2'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">'content2'</span>},
+    ]
+  },
+  <span class="hljs-attr">mocks</span>: {
+    <span class="hljs-attr">OtherComponent</span>: <span class="hljs-literal">false</span>
+  },
+  <span class="hljs-attr">blackList</span>: <span class="hljs-literal">true</span>
+});
+
+cmp.html() === <span class="hljs-string">`
+  &lt;div&gt;
+    &lt;article&gt;
+      &lt;h1&gt;post1&lt;/h1&gt;
+      &lt;p&gt;content1&lt;/p&gt;
+    &lt;/article&gt;
+    &lt;article&gt;
+      &lt;h1&gt;post2&lt;/h1&gt;
+      &lt;p&gt;content2&lt;/p&gt;
+    &lt;/article&gt;
+    &lt;OtherComponent /&gt;
+  &lt;/div&gt;
+`</span>;
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#philosophy-of-testing">Philosophy of testing</a></li><li><a href="#types-of-tests">Types of tests</a><ul class="toc-headings"><li><a href="#component-take-props-as-input">Component take props as input</a></li><li><a href="#statefull-component">Statefull component</a></li><li><a href="#component-event-output">Component, event output</a></li><li><a href="#component-with-externals">Component with externals</a></li><li><a href="#mocking-strategies">Mocking strategies</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo.svg" alt="Component test utils" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/getting-started.html">Getting Started</a><a href="/docs/api.html">API Reference</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/FBerthelot/component-test-utils">GitHub</a><a class="github-button" href="https://github.com/FBerthelot/component-test-utils" data-icon="octicon-star" data-count-href="/FBerthelot/react-test-utils/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">MIT Copyright © 2019 Florent Berthelot</section></footer></div></body></html>
