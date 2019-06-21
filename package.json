@@ -60,7 +60,8 @@
       "dependencyUpdate": ":arrow_up: Update ${dependency} to version ${version}",
       "devDependencyUpdate": ":arrow_up: Update ${dependency} to version ${version}",
       "dependencyPin": ":pushpin: Pin ${dependency} to ${oldVersion}",
-      "devDependencyPin": ":pushpin: Pin ${dependency} to ${oldVersion}"
+      "devDependencyPin": ":pushpin: Pin ${dependency} to ${oldVersion}",
+      "lockfileUpdate": ":arrow_up: update lockfile ${lockfilePath}"
     }
   }
 }
