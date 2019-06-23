@@ -4,8 +4,11 @@
     "Shallow": [
       "shallow/constructor",
       "shallow/html",
+      "shallow/props",
+      "shallow/setProps",
+      "shallow/querySelector",
       "shallow/dispatchEvent",
-      "shallow/setProps"
+      "shallow/unmount"
     ],
     "Frameworks": ["api-react", "api-vuejs", "api-angular", "api-vanilla"]
   }

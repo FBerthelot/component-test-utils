@@ -98,11 +98,17 @@ class ShallowRender {
 
     try {
       this._rendered = render(reactEl, this._config, ShallowRender);
+      this.props = {
+        ...enhancedProps,
+        ...this._rendered.props,
+        children: null
+      };
+      delete this.props.children;
     } catch (e) {
       this._handleErrorInRender(e);
     }
 
-    // Finish recording the order of hooks by toogling this dispatcher property
+    // Finish recording the order of hooks  by toogling this dispatcher property
     this._dispatcher._informDispatcherRenderIsDone();
 
     ReactCurrentDispatcher.current = prevDispatcher;
@@ -202,7 +208,10 @@ class ShallowRender {
   setProps(props) {
     this._throwIfUnmounted('setProps');
 
-    this._render(props);
+    this._render({
+      ...this._prevProps,
+      ...props
+    });
   }
 
   querySelector(selector) {
