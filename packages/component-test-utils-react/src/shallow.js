@@ -16,11 +16,12 @@ const defaultConfig = {
 };
 
 class ShallowRender {
-  constructor(component, config = defaultConfig) {
+  constructor(component, config = defaultConfig, isRoot) {
     this._unmounted = false;
     this._component = component;
     this._config = config;
     this._dispatcher = createDispatcher(this);
+    this._isRoot = Boolean(isRoot);
 
     this._render();
   }
@@ -42,11 +43,19 @@ class ShallowRender {
       (this._instance && this._instance.props) ||
       this._component.props;
 
+    const enhancedProps = this._isRoot && this._config.events ? {
+      ...props,
+      ...Object.keys(this._config.events).reduce((addedProps, eventKey) => {
+        addedProps[`on${eventKey[0].toUpperCase()}${eventKey.slice(1)}`] = this._config.events[eventKey];
+        return addedProps;
+      }, {})
+    } : props;
+
     if (isClassComponent(this._component.type)) {
       if (!this._instance) {
         const updater = new Updater(this);
         // eslint-disable-next-line new-cap
-        this._instance = new this._component.type(props, {}, updater);
+        this._instance = new this._component.type(enhancedProps, {}, updater);
         this._instance.state = this._instance.state || null;
         this._instance.updater = updater;
         firstRender = true;
@@ -56,13 +65,13 @@ class ShallowRender {
         this._instance.state = {
           ...this._instance.state,
           ...this._component.type.getDerivedStateFromProps(
-            props,
+            enhancedProps,
             this._instance.state
           )
         };
       }
 
-      this._instance.props = props;
+      this._instance.props = enhancedProps;
 
       if (
         !forceUpdate &&
@@ -80,11 +89,11 @@ class ShallowRender {
     } else if (ReactIs.isForwardRef(this._component)) {
       reactEl = this._component.type.render.call(
         undefined,
-        props,
+        enhancedProps,
         this._component.ref
       );
     } else {
-      reactEl = this._component.type.call(undefined, props);
+      reactEl = this._component.type.call(undefined, enhancedProps);
     }
 
     try {
@@ -103,7 +112,7 @@ class ShallowRender {
       this._handleClassLAfterRenderLifeCycle(firstRender);
     }
 
-    this._prevProps = props;
+    this._prevProps = enhancedProps;
   }
 
   _handleErrorInRender(error) {
@@ -199,7 +208,7 @@ class ShallowRender {
   querySelector(selector) {
     this._throwIfUnmounted('querySelector');
 
-    return querySelector(this._rendered, selector, ShallowRender);
+    return querySelector(this._rendered, selector, ShallowRender, this.html.bind(this));
   }
 
   unmount() {
@@ -214,7 +223,7 @@ class ShallowRender {
 }
 
 exports.shallow = (component, config) => {
-  return new ShallowRender(component, config);
+  return new ShallowRender(component, config, true);
 };
 
 function isClassComponent(Component) {

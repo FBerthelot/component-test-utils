@@ -1,7 +1,12 @@
 exports.EmptyShallowedComponent = class EmptyShallowedComponent {
-  constructor(selector) {
+  constructor(selector, view) {
     this.nodeNotExistError = new Error(
-      `The node you try to access with "${selector}" selector does not exist`
+      `
+      The node you try to access with "${selector}" selector does not exist
+
+      ${view ? view : 'Your component render falsy value'}
+
+      `
     );
   }
 

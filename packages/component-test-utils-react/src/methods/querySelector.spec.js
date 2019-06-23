@@ -28,27 +28,27 @@ describe('querySelector', () => {
 
   it('Should return an EmptyShallowedComponent when component have no props', () => {
     const component = {};
-    const result = querySelector(component, 'tagname', ShallowRender);
+    const result = querySelector(component, 'tagname', ShallowRender, () => {});
 
     expect(result instanceof EmptyShallowedComponent).toBe(true);
   });
 
   it('Should return null if component have no children', () => {
     const component = {props: {}};
-    const result = querySelector(component, 'tagname', ShallowRender);
+    const result = querySelector(component, 'tagname', ShallowRender, () => {});
 
     expect(result instanceof EmptyShallowedComponent).toBe(true);
   });
 
   it('Should return null when children is not an element but a string', () => {
     const component = {props: {children: 'toto'}};
-    const result = querySelector(component, 'tagname', ShallowRender);
+    const result = querySelector(component, 'tagname', ShallowRender, () => {});
     expect(result instanceof EmptyShallowedComponent).toBe(true);
   });
 
   it('Should return null when children not correspond', () => {
     const component = {props: {children: {type: 'toto'}}};
-    const result = querySelector(component, 'tagname', ShallowRender);
+    const result = querySelector(component, 'tagname', ShallowRender, () => {});
     expect(result instanceof EmptyShallowedComponent).toBe(true);
   });
 
