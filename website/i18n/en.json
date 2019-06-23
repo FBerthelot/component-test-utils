@@ -35,6 +35,9 @@
       "shallow/html": {
         "title": "shallow/html"
       },
+      "shallow/props": {
+        "title": "shallow/props"
+      },
       "shallow/querySelector": {
         "title": "shallow/querySelector"
       },

@@ -57,4 +57,24 @@ describe('shallow - setProps', () => {
     expect(effect).toHaveBeenCalledTimes(3);
     expect(effect2).toHaveBeenCalledTimes(2);
   });
+
+  it('should not override all props', () => {
+    const Component = ({nbPost, nbLikes}) => {
+      return (
+        <div>
+          {nbPost} - {nbLikes}
+        </div>
+      );
+    };
+
+    const cmp = shallow(<Component nbPost={4} nbLikes={20}/>);
+
+    expect(cmp.html()).toBe('<div>4 - 20</div>');
+
+    cmp.setProps({
+      nbPost: 34
+    });
+
+    expect(cmp.html()).toBe('<div>34 - 20</div>');
+  });
 });
