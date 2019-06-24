@@ -135,7 +135,7 @@ describe('shallow - trigger/dispatchEvent', () => {
   it('should work with a setState into a useEffect', () => {
     const Component = () => {
       const [nbPost, setNbPost] = React.useState(0);
-      React.useEffect(() => setNbPost(1));
+      React.useEffect(() => setNbPost(1), []);
 
       return <div>{nbPost}</div>;
     };
