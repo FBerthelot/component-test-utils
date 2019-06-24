@@ -1,6 +1,9 @@
 {
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/*"],
+  "command": {
+    "version": {
+      "message": ":bookmark: publish %s"
+    }
+  },
   "version": "1.0.0-alpha.1"
 }
