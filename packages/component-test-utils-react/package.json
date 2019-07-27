@@ -1,6 +1,6 @@
 {
   "name": "component-test-utils-react",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": " Test react component the same way as ohter frameworks",
   "main": "index.js",
   "scripts": {
