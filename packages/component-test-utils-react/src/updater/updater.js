@@ -1,4 +1,4 @@
-export class Updater {
+class Updater {
   constructor(shallow) {
     this._shallow = shallow;
     this._callbacks = [];
@@ -58,3 +58,5 @@ export class Updater {
     this._shallow._render();
   }
 }
+
+exports.Updater = Updater;
