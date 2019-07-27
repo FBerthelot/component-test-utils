@@ -1,5 +1,26 @@
 # Changelog
 
+<a name="1.0.0-alpha.3"></a>
+## 1.0.0-alpha.3 (2019-07-26)
+
+### Added
+
+- ✅ add test of default export [[620eb8c](https://github.com/FBerthelot/component-test-utils/commit/620eb8ca670c61e1a3b26de33098dd26c8d680bb)]
+
+### Changed
+
+- ⬆️ Update eslint-plugin-react to version 7.14.2 [[200d7a3](https://github.com/FBerthelot/component-test-utils/commit/200d7a3c229c402b5aca7dae46d66e017b7380d0)]
+- ⬆️ update lockfile package-lock.json [[1e0de40](https://github.com/FBerthelot/component-test-utils/commit/1e0de40a5947a7ed7cc5c1b909d9a9c861be6e07)]
+- ⬆️ Update @babel/preset-env to version 7.5.5 [[5af6b69](https://github.com/FBerthelot/component-test-utils/commit/5af6b691d1cac197a3d79f1ace6342987774cb10)]
+- ⬆️ update lockfile package-lock.json [[7b9ddba](https://github.com/FBerthelot/component-test-utils/commit/7b9ddbad4391daf4d426f2885e98de55619b9911)]
+- ⬆️ Update eslint-plugin-react to version 7.14.3 [[e9b9254](https://github.com/FBerthelot/component-test-utils/commit/e9b9254d7e0d4197ca37d904022edfa1711af426)]
+- ⬆️ update lockfile package-lock.json [[8d7c049](https://github.com/FBerthelot/component-test-utils/commit/8d7c049b1ee12ae986d611f5c2b3e23cceefa2fe)]
+
+### Removed
+
+- ➖ Upgrade and remove some dependencies [[1eaf632](https://github.com/FBerthelot/component-test-utils/commit/1eaf63267348c36104c36d4540113d6fe7d7080c)]
+
+
 <a name="1.0.0-alpha.2"></a>
 ## 1.0.0-alpha.2 (2019-06-24)
 
@@ -51,28 +72,6 @@
 
 ### Miscellaneous
 
--  ui [[215566b](https://github.com/FBerthelot/component-test-utils/commit/215566b50f76bde4f597c070ba69d6e0b1df5892)]
--  Merge pull request [#19](https://github.com/FBerthelot/component-test-utils/issues/19) from FBerthelot/greenkeeper/@typescript-eslint/eslint-plugin-1.10.2 [[3ba7835](https://github.com/FBerthelot/component-test-utils/commit/3ba78356bf58f6993446d42449f3b3c44c50b290)]
--  chore(package): update lockfile package-lock.json [[bed8372](https://github.com/FBerthelot/component-test-utils/commit/bed83723046bfadccf6f02faad26164ca0b3d99e)]
--  Merge pull request [#16](https://github.com/FBerthelot/component-test-utils/issues/16) from FBerthelot/dispatchEventImprove [[d35c09f](https://github.com/FBerthelot/component-test-utils/commit/d35c09f39a8cbbda16b351742f0c5e4c49d8b3b8)]
--  Merge pull request [#15](https://github.com/FBerthelot/component-test-utils/issues/15) from FBerthelot/refactoShallowTest [[1dd1f57](https://github.com/FBerthelot/component-test-utils/commit/1dd1f57c50ad837d1c7ff3ea8de6c75d30abe9e1)]
--  Merge pull request [#1](https://github.com/FBerthelot/component-test-utils/issues/1) from FBerthelot/dispatchEvent [[613eb31](https://github.com/FBerthelot/component-test-utils/commit/613eb31af998e41da322dc86e6659ec0ab1b0698)]
--  Merge pull request [#26](https://github.com/FBerthelot/component-test-utils/issues/26) from FBerthelot/greenkeeper/eslint-plugin-react-7.14.1 [[478c28c](https://github.com/FBerthelot/component-test-utils/commit/478c28cd7f54060475de0ed509c4d9ed993a9528)]
--  Merge pull request [#10](https://github.com/FBerthelot/component-test-utils/issues/10) from FBerthelot/finalizeReactClass [[a9c3800](https://github.com/FBerthelot/component-test-utils/commit/a9c3800157bb593a0b31201b6c9ff5ddf2879d20)]
--  Merge pull request [#11](https://github.com/FBerthelot/component-test-utils/issues/11) from FBerthelot/greenkeeper/initial [[2d2e9fc](https://github.com/FBerthelot/component-test-utils/commit/2d2e9fc183c6cfd81875ef49cf11d3da914d6d8b)]
--  Merge pull request [#2](https://github.com/FBerthelot/component-test-utils/issues/2) from Swiip/typo-readme [[9ced4fd](https://github.com/FBerthelot/component-test-utils/commit/9ced4fdbd5cd57914ad5daf93d477764e3fdccef)]
--  Merge pull request [#9](https://github.com/FBerthelot/component-test-utils/issues/9) from Swiip/angular [[a34f2bf](https://github.com/FBerthelot/component-test-utils/commit/a34f2bfb8c1d2a5915fb6bc8eaa3a6c7e7b8aae6)]
--  Merge pull request [#13](https://github.com/FBerthelot/component-test-utils/issues/13) from FBerthelot/doc [[f44e122](https://github.com/FBerthelot/component-test-utils/commit/f44e122804a771bfb2fe8c8b4cc64cda5e3f56a8)]
--  Merge pull request [#8](https://github.com/FBerthelot/component-test-utils/issues/8) from FBerthelot/finilizeHooks [[b201338](https://github.com/FBerthelot/component-test-utils/commit/b201338f051b3757dff330339a07720495cbddaa)]
--  Merge pull request [#21](https://github.com/FBerthelot/component-test-utils/issues/21) from FBerthelot/blackListMode [[f00f07a](https://github.com/FBerthelot/component-test-utils/commit/f00f07a5ab5fc9a13d1f7278d8158ed5113d8823)]
--  Merge pull request [#7](https://github.com/FBerthelot/component-test-utils/issues/7) from Swiip/add-props-test [[fb37c48](https://github.com/FBerthelot/component-test-utils/commit/fb37c482eee90e46034dfec34aa8e67548683559)]
--  Merge pull request [#22](https://github.com/FBerthelot/component-test-utils/issues/22) from FBerthelot/greenkeeper/eslint-6.0.0 [[8e55eed](https://github.com/FBerthelot/component-test-utils/commit/8e55eed2e33d84f5673d2b5071d010b176855f26)]
--  Merge pull request [#6](https://github.com/FBerthelot/component-test-utils/issues/6) from Swiip/init-support-class [[6ac76d5](https://github.com/FBerthelot/component-test-utils/commit/6ac76d54fc922c8fc458782e3df378be2dddda0b)]
--  Merge pull request [#23](https://github.com/FBerthelot/component-test-utils/issues/23) from FBerthelot/reactProps [[072126e](https://github.com/FBerthelot/component-test-utils/commit/072126e044dab09d8c56e26521a968736fb978a7)]
--  Merge pull request [#4](https://github.com/FBerthelot/component-test-utils/issues/4) from FBerthelot/useContext [[d875519](https://github.com/FBerthelot/component-test-utils/commit/d875519d2b2df82b40a3e7d7d39731c2c83cd1f0)]
--  Merge pull request [#25](https://github.com/FBerthelot/component-test-utils/issues/25) from FBerthelot/upgradeDeps [[7e54178](https://github.com/FBerthelot/component-test-utils/commit/7e5417897d9f460a421e26e5f709408876f87fc2)]
--  Merge pull request [#3](https://github.com/FBerthelot/component-test-utils/issues/3) from FBerthelot/useEffect [[4786ca3](https://github.com/FBerthelot/component-test-utils/commit/4786ca3f33665d14ef1cb0c978d19d07af9085a5)]
--  Merge pull request [#14](https://github.com/FBerthelot/component-test-utils/issues/14) from FBerthelot/typoReact [[f8efcd8](https://github.com/FBerthelot/component-test-utils/commit/f8efcd83a63048f12add0e7ba3041a5d9d376953)]
 - 📝 add informations about mock system [[c4eaa36](https://github.com/FBerthelot/component-test-utils/commit/c4eaa36eacd58e046ccf0b31c4a5d4d3e1221ebe)]
 - 📝 Add Greenkeeper badge [[dbba5d8](https://github.com/FBerthelot/component-test-utils/commit/dbba5d8c3c7b8bd3b06264c75aaf803ab2c34c6b)]
 - 📝 philosophy documentation [[74f0cdd](https://github.com/FBerthelot/component-test-utils/commit/74f0cdd94b0e63a99716a28e212a70852912f5c3)]
@@ -84,7 +83,6 @@
 
 ### Miscellaneous
 
--  v1.0.0-alpha.1 [[13c4200](https://github.com/FBerthelot/component-test-utils/commit/13c420014036438bcb2650a74976a1cf04ff2034)]
 - 📝 add changelog&#x27; [[0478236](https://github.com/FBerthelot/component-test-utils/commit/04782360931753565368ec6891f71a4c4f6dd406)]
 
 
@@ -94,5 +92,3 @@
 ### Added
 
 - 🎉 First release 🎉 [[7850af6](https://github.com/FBerthelot/component-test-utils/commit/7850af6d60fd15f97d032037631e0ae778a9ce92)]
-
-
