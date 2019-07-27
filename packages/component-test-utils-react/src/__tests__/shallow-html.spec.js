@@ -145,6 +145,24 @@ describe('shallow - html', () => {
     );
   });
 
+  it('should render component that with HOC and with mock', () => {
+    const Child = ({className}) => {
+      return <button type="button" className={className}>0 Like</button>;
+    };
+
+    const withStyle = Component => () => {
+      return <Component className="class-for-button"/>;
+    };
+
+    const Component = withStyle(Child);
+
+    const cmp = shallow(<Component/>, {mocks: {Child: true}});
+
+    expect(cmp.html()).toBe(
+      '<Child class="class-for-button"><button type="button" class="class-for-button">0 Like</button></Child>'
+    );
+  });
+
   it('should render component that use useState hooks', () => {
     const Component = () => {
       const [nbLikes] = React.useState(0);

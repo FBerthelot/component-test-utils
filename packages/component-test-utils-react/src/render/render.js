@@ -27,9 +27,12 @@ const render = (reactEl, config, ShallowRender) => {
   }
 
   if (!isAlreadyMocked && shouldBeRender(reactEl, config)) {
+    const mock = config.mocks && config.mocks[reactEl.type.displayName || reactEl.type.name];
+    const el = mock === true ? reactEl.type : mock || reactEl.type;
+
     const shallowRender = new ShallowRender(
       React.createElement(
-        (config.mocks && config.mocks[reactEl.type.displayName || reactEl.type.name]) || reactEl.type,
+        el,
         reactEl.props,
         reactEl.props && reactEl.props.children
       ),
