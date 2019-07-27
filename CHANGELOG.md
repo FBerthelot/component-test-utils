@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.0.0-alpha.5"></a>
+## 1.0.0-alpha.5 (2019-07-27)
+
+### Fixed
+
+- 🐛 fix mocks true on white list mode [[2ea5dc1](https://github.com/FBerthelot/component-test-utils/commit/2ea5dc13fc0d0526a51512e239c5709d72534604)]
+
+
 <a name="1.0.0-alpha.4"></a>
 ## 1.0.0-alpha.4 (2019-07-27)
 
