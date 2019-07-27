@@ -1,7 +1,7 @@
 {
   "name": "component-test-utils-react",
   "version": "1.0.0-alpha.3",
-  "description": " Test react component the same way as ohter frameworks",
+  "description": " Test react component the same way as other frameworks",
   "main": "index.js",
   "scripts": {
     "test": "echo \"to launch tests, start it from component-tet-utils root folder\" && exit 1"
