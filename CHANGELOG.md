@@ -1,5 +1,18 @@
 # Changelog
 
+<a name="1.0.0-alpha.4"></a>
+## 1.0.0-alpha.4 (2019-07-27)
+
+### Fixed
+
+- 🐛 use commonjs export for updater now [[856e982](https://github.com/FBerthelot/component-test-utils/commit/856e98225b0021ed9a13bc136609c9ecabb64ef1)]
+
+### Miscellaneous
+
+- 📝 add circleci badge in the readme [[f8f7606](https://github.com/FBerthelot/component-test-utils/commit/f8f76065de729ac3f39f265a23423dd2f7d7b686)]
+- 📝 initialize react readme with readme-generator [[a0445d0](https://github.com/FBerthelot/component-test-utils/commit/a0445d024625be8783d9a47fa864749aa855e8e6)]
+
+
 <a name="1.0.0-alpha.3"></a>
 ## 1.0.0-alpha.3 (2019-07-26)
 
