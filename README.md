@@ -6,6 +6,8 @@ Test HTML component the same way, regardless of the framework (React, Angular, V
 
 [![License](https://img.shields.io/npm/l/component-test-utils.svg)](https://www.npmjs.com/package/component-test-utils)
 
+[![CircleCI](https://circleci.com/gh/FBerthelot/component-test-utils/tree/master.svg?style=svg)](https://circleci.com/gh/FBerthelot/component-test-utils/tree/master)
+
 Component test utils is a JavaScript Utility that help you to interact with your component and get component's output.
 
 ## Documentation
