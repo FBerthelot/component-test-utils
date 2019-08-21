@@ -1,6 +1,6 @@
 {
   "name": "component-test-utils-master",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.6",
   "private": true,
   "description": "Test HTML component the same way, regardless of the framework (React, Angular, Vue.JS, Vanilla, ...) ",
   "main": "index.js",
