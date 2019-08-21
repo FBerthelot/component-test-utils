@@ -5,11 +5,18 @@
     "jest": true
   },
   "rules": {
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "react/state-in-constructor": 0
   },
   "settings": {
     "react": {
       "version": "16.8"
+    }
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "ecmaFeatures": {
+      "jsx": true
     }
   }
 }
