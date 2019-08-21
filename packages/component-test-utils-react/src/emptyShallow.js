@@ -10,6 +10,10 @@ exports.EmptyShallowedComponent = class EmptyShallowedComponent {
     );
   }
 
+  get props() {
+    throw this.nodeNotExistError;
+  }
+
   html() {
     throw this.nodeNotExistError;
   }

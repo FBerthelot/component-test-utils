@@ -17,21 +17,33 @@ const isSelectedObject = (elem, selector) => {
   return elem.type === selector;
 };
 
-exports.querySelector = (shallowedComponent, selector, ShallowRender, getView) => {
-  // When the children is not an array nor an object, impossible to target it !
-  if (
-    !shallowedComponent.props ||
-    !shallowedComponent.props.children ||
-    typeof shallowedComponent.props.children !== 'object'
-  ) {
-    return new EmptyShallowedComponent(selector);
+function findElements(shallowedComponent, selector) {
+  const result = [];
+
+  if (isSelectedObject(shallowedComponent, selector)) {
+    result.push(shallowedComponent);
   }
 
-  const {children} = shallowedComponent.props;
+  // When the children is not an array nor an object, impossible to target it
+  if (
+    shallowedComponent.props &&
+    shallowedComponent.props.children
+  ) {
+    if (Array.isArray(shallowedComponent.props.children)) {
+      shallowedComponent.props.children.forEach(child => {
+        findElements(child, selector).forEach(el => result.push(el));
+      });
+    } else {
+      findElements(shallowedComponent.props.children, selector).forEach(el => result.push(el));
+    }
+  }
 
-  const targetedComponent = Array.isArray(children) ?
-    children.find(child => isSelectedObject(child, selector)) :
-    isSelectedObject(children, selector) && children;
+  return result;
+}
+
+exports.querySelector = (shallowedComponent, selector, ShallowRender, getView) => {
+  const targetedComponents = findElements(shallowedComponent, selector);
+  const targetedComponent = targetedComponents[0];
 
   if (!targetedComponent) {
     return new EmptyShallowedComponent(selector, getView());
