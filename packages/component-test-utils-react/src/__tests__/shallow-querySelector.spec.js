@@ -80,4 +80,15 @@ describe('shallow - querySelector', () => {
 
     expect(cmp.querySelector('#desc').html()).toBe('<button id="desc" type="button" onClick="[onClick]">-</button>');
   });
+
+  it('should work with component with a custom displayName with tag selector', () => {
+    const Child = () => (<div><Counter toto={false}/></div>);
+    const Parent = () => (<div><Child/></div>);
+
+    Counter.displayName = 'Counter2';
+
+    const cmp = shallow(<Parent/>, {mocks: {Child: true, Counter: true}});
+
+    expect(cmp.querySelector('Counter2').props.toto).toBe(false);
+  });
 });

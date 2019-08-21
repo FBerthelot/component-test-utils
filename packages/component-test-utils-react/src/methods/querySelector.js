@@ -1,4 +1,5 @@
 const React = require('react');
+const {getTagName} = require('./getTagName');
 const {EmptyShallowedComponent} = require('../emptyShallow');
 const isIDselector = /^#(.*)/;
 
@@ -14,7 +15,7 @@ const isSelectedObject = (elem, selector) => {
   }
 
   // If tagname selector
-  return elem.type === selector;
+  return getTagName(elem) === selector;
 };
 
 function findElements(shallowedComponent, selector) {

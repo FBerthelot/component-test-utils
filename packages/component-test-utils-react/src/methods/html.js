@@ -1,4 +1,4 @@
-const ReactIs = require('react-is');
+const {getTagName} = require('./getTagName');
 
 function isString(variable) {
   return typeof variable === 'function';
@@ -25,22 +25,6 @@ function buildPropsString(props, reactEl) {
     '';
 }
 
-function getTagname(reactEl) {
-  if (typeof reactEl.type === 'string') {
-    return reactEl.type;
-  }
-
-  if (ReactIs.isFragment(reactEl)) {
-    return '';
-  }
-
-  return (
-    reactEl.type.displayName ||
-    reactEl.type.name ||
-    reactEl.type.$$typeof.toString()
-  );
-}
-
 function buildHtmlEl(reactEl) {
   if (reactEl === null || reactEl === undefined) {
     return '';
@@ -50,7 +34,7 @@ function buildHtmlEl(reactEl) {
     return reactEl.toString();
   }
 
-  const tagname = getTagname(reactEl);
+  const tagname = getTagName(reactEl);
 
   const props =
     reactEl.props &&
