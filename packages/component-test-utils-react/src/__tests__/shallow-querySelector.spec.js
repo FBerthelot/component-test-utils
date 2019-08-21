@@ -62,4 +62,22 @@ describe('shallow - querySelector', () => {
       '<>Total : 0<button type="button" onClick="[onClick]">+</button><button id="desc" type="button" onClick="[onClick]">-</button></>'
     );
   });
+
+  it('should work with component deep in the tree with tag selector', () => {
+    const Child = () => (<div><Counter/></div>);
+    const Parent = () => (<div><Child/></div>);
+
+    const cmp = shallow(<Parent/>, {mocks: {Child: true, Counter: true}});
+
+    expect(cmp.querySelector('button').html()).toBe('<button type="button" onClick="[onClick]">+</button>');
+  });
+
+  it('should work with component deep in the tree with id selector', () => {
+    const Child = () => (<div><Counter/></div>);
+    const Parent = () => (<div><Child/></div>);
+
+    const cmp = shallow(<Parent/>, {mocks: {Child: true, Counter: true}});
+
+    expect(cmp.querySelector('#desc').html()).toBe('<button id="desc" type="button" onClick="[onClick]">-</button>');
+  });
 });

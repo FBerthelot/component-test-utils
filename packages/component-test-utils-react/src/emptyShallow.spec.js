@@ -19,6 +19,12 @@ describe('EmptyShallowedComponent', () => {
     ).toThrow('selector1234');
   });
 
+  it('should throw an error with the given selector when trying dispatchEvent', () => {
+    expect(() =>
+      new EmptyShallowedComponent('selector1234').props.randomProps
+    ).toThrow('selector1234');
+  });
+
   it('should throw an error with the given selector when trying trigger', () => {
     expect(() =>
       new EmptyShallowedComponent('selector1234').trigger('toto')
