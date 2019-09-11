@@ -32,6 +32,9 @@
       "shallow/dispatchEvent": {
         "title": "shallow/dispatchEvent"
       },
+      "shallow/exists": {
+        "title": "shallow/exists"
+      },
       "shallow/html": {
         "title": "shallow/html"
       },
