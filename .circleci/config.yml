@@ -48,7 +48,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ./
-      - run: cd website && npm run build
+      - run: npm run doc:build
       - persist_to_workspace:
           root: ./
           paths:
@@ -58,6 +58,8 @@ jobs:
     docker:
       - image: circleci/node:latest
     working_directory: ~/repo
+    environment:
+      - DOC_CNAME: 'component-test-utils.berthelot.io'
     steps:
       - attach_workspace:
           at: ./
