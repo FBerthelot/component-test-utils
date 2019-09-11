@@ -229,6 +229,10 @@ class ShallowRender {
       this._instance.componentWillUnmount();
     }
   }
+
+  exists() {
+    return true;
+  }
 }
 
 exports.shallow = (component, config) => {

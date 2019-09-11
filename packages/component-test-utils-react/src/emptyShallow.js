@@ -34,4 +34,8 @@ exports.EmptyShallowedComponent = class EmptyShallowedComponent {
   querySelector() {
     throw this.nodeNotExistError;
   }
+
+  exists() {
+    return false;
+  }
 };
