@@ -13,7 +13,8 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "tdd": "jest --watch",
     "changelog": "gitmoji-changelog",
-    "doc": "cd website && npm run start"
+    "doc": "cd website && npm run start",
+    "doc:build": "cd website && npm run build"
   },
   "repository": {
     "type": "git",
