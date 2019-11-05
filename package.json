@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/FBerthelot/component-test-utils#readme",
   "devDependencies": {
-    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.0.0",
     "@types/jest": "^24.0.15",
     "@typescript-eslint/eslint-plugin": "^2.0.0",
