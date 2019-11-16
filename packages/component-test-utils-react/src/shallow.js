@@ -16,7 +16,7 @@ const defaultConfig = {
 };
 
 class ShallowRender {
-  constructor(component, config = defaultConfig, isRoot) {
+  constructor(component, config = defaultConfig, isRoot = false) {
     this._unmounted = false;
     this._component = component;
     this._config = config;

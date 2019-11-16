@@ -121,7 +121,6 @@ describe('shallow - html', () => {
   });
 
   it('should not mock ChildComponent', () => {
-    // eslint-disable-next-line react/prop-types
     const ChildComponent = ({nbLikes}) => {
       return <button type="button">{nbLikes}</button>;
     };
