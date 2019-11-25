@@ -34,6 +34,12 @@ function buildHtmlEl(reactEl) {
     return reactEl.toString();
   }
 
+  if (Array.isArray(reactEl)) {
+    return reactEl
+      .map(buildHtmlEl)
+      .join('');
+  }
+
   const tagname = getTagName(reactEl);
 
   const props =
@@ -44,13 +50,7 @@ function buildHtmlEl(reactEl) {
   const propsString = buildPropsString(props, reactEl);
 
   if (children !== null && children !== undefined) {
-    return Array.isArray(children) ?
-      `<${tagname}${propsString}>${reactEl.props.children
-        .map(buildHtmlEl)
-        .join('')}</${tagname}>` :
-      `<${tagname}${propsString}>${buildHtmlEl(
-        reactEl.props.children
-      )}</${tagname}>`;
+    return `<${tagname}${propsString}>${buildHtmlEl(reactEl.props.children)}</${tagname}>`;
   }
 
   return `<${tagname}${propsString}/>`;

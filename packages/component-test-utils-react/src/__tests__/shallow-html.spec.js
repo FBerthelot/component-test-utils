@@ -258,4 +258,34 @@ describe('shallow - html', () => {
 
     expect(cmp.html()).toBe('<button type="button">0</button>');
   });
+
+  it('should render childrens with custom element', () => {
+    const ChildComponent1 = () => (<button type="button">0</button>);
+    const ChildComponent2 = () => (<button type="button">1</button>);
+    const ChildComponent3 = () => (<button type="button">3</button>);
+
+    const Component = ({children}) => {
+      return (
+        <section id="post">
+          <div>
+            <span>yolo</span>
+            {children}
+          </div>
+        </section>
+      );
+    };
+
+    const cmp = shallow(
+      <Component>
+        <div>Test</div>
+        <ChildComponent1/>
+        <ChildComponent2/>
+        <ChildComponent3/>
+      </Component>
+    );
+
+    expect(cmp.html()).toBe(
+      '<section id="post"><div><span>yolo</span><div>Test</div><ChildComponent1/><ChildComponent2/><ChildComponent3/></div></section>'
+    );
+  });
 });
