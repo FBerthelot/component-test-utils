@@ -25,6 +25,15 @@ function findElements(shallowedComponent, selector) {
     result.push(shallowedComponent);
   }
 
+  // When component is an array, check if wanted compoent is between each element
+  if (Array.isArray(shallowedComponent)) {
+    shallowedComponent.forEach(child => {
+      findElements(child, selector).forEach(el => result.push(el));
+    });
+
+    return result;
+  }
+
   // When the children is not an array nor an object, impossible to target it
   if (
     shallowedComponent.props &&
