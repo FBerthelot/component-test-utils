@@ -45,7 +45,7 @@
     "eslint": "^6.2.1",
     "eslint-config-xo-react": "^0.20.0",
     "eslint-config-xo-space": "^0.21.0",
-    "eslint-plugin-react": "7.15.0",
+    "eslint-plugin-react": "7.17.0",
     "eslint-plugin-react-hooks": "^2.0.0",
     "gitmoji-changelog": "^2.0.0-alpha.2",
     "jest": "^24.8.0",
