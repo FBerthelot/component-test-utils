@@ -1,80 +1,52 @@
-# component-test-utils
-Test HTML component the same way, regardless of the framework (React, Angular, Vue.JS, Vanilla, ...)
+<h1 align="center">Welcome to component-test-utils 👋</h1>
 
 [![npm Version](https://img.shields.io/npm/v/component-test-utils.svg)](https://www.npmjs.com/package/component-test-utils)
-[![License](https://img.shields.io/npm/l/component-test-utils.svg)](https://www.npmjs.com/package/component-test-utils)
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
-Component test utils is a JavaScript Utility that help you to interact with your component and get component's output.
+<p>
+  <a href="https://www.npmjs.com/package/component-test-utils" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/component-test-utils.svg">
+  </a>
+  <a href="https://component-test-utils.berthelot.io/docs/concept" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/FBerthelot/component-test-utils/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="../../LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/FBerthelot/component-test-utils" />
+  </a>
+  <a href="https://twitter.com/berthel350" target="_blank">
+    <img alt="Twitter: berthel350" src="https://img.shields.io/twitter/follow/berthel350.svg?style=social" />
+  </a>
+</p>
 
-## Purpose
+>  Test component the same way, regardless of the framework (React, Angular, Vue.JS, Vanilla, ...)
 
-Nowdays, testing component is commonly misunderstood.
-Each big JavaScript FrameWork has is own way of testing.
-It\'s confusing when you switch of FrameWork.
+### 🏠 [Homepage](https://github.com/FBerthelot/component-test-utils#readme)
 
-The goal of this tool is to have a opinated and unify way to test component disregarding the framework you use.
+This package is only a place holder right now. Nothing interesting here.
 
-## How to test component ?
+## Author
 
-Before answer to this question, we need to answer to the question: "what is a component ?".
+👤 **FBerthelot**
 
-A component is a Custom HTML Component that produce a view (aka. a piece of others HTML Component).
-To produce the view Component take properties and his internal state.
+* Website: https://berthelot.io
+* Twitter: [@berthel350](https://twitter.com/berthel350)
+* Github: [@FBerthelot](https://github.com/FBerthelot)
+* LinkedIn: [@Florent Berthelot](https://linkedin.com/in/florent-berthelot-a2678861/)
 
-// TODO insert the schema of a component
+## 🤝 Contributing
 
-So to sum up, a component is like a JavaScript function that take two arguments, the state and the props.
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/FBerthelot/component-test-utils/issues). You can also take a look at the [contributing guide](../../CONTRIBUTING.md).
 
-In most of the case it's ineffective to try change the state of the component manually.
+## Show your support
 
-## Example of a component test (with jest)
+Give a ⭐️ if this project helped you!
 
-```javascript
-import {shallow} from 'component-test-utils';
+## 📝 License
 
-describe('like component', () => {
-  it('should initialize button with properties', () => {
-    const cmp = mount(`
-      <likeButton></likeButton>
-    `, {
-      nbLikes: 18
-    });
+Copyright © 2019 [FBerthelot](https://github.com/FBerthelot).<br />
+This project is [MIT](../../LICENSE) licensed.
 
-    expect(cmp.view()).toContain('18 likes');
-  });
-
-  it('should increment likes when clicking on the button ', () => {
-    const cmp = mount(`
-      <likeButton></likeButton>
-    `, {
-      nbLikes: 18
-    });
-
-    // before clicking mocking internal function that send a request
-    cmp.mockState('likeTheTweet', jest.fn());
-
-    cmp.view().find('button').click();
-    cmp.update();
-
-    expect(cmp.view()).toContain('19 likes');
-  });
-
-  it('should display children component (test transclusion)', () => {
-    const cmp = mount(`
-      <likeButton>
-        <span>work with childrenslots/transclusion</span>
-      </likeButton>
-    `);
-
-    expect(cmp.view().textContent()).toContain('work with children/slots/transclusion');
-  });
-});
-```
-
-## What is the kind of test I can do with component-test-utils ?
-
-You can do both unit and integration test with component test-utils.
-The only test type you cannot do is end-to-end testing because component-test-util rely on some mocking solution.
-
-To have more information on testing, you can check these slides (in french) : https://slides.com/florentberthelot/test-composants-web#/
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
