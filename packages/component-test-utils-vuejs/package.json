@@ -1,7 +1,7 @@
 {
   "name": "component-test-utils-vuejs",
   "version": "1.0.0-alpha.2",
-  "description": " Test Vue.JS component the same way as ohter frameworks",
+  "description": " Test Vue.JS component the same way as other frameworks",
   "main": "index.js",
   "scripts": {
     "test": "echo \"to launch tests, start it from component-tet-utils root folder\" && exit 1"

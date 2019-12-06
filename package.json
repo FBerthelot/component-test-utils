@@ -2,7 +2,7 @@
   "name": "component-test-utils-master",
   "version": "1.0.0-alpha.7",
   "private": true,
-  "description": "Test HTML component the same way, regardless of the framework (React, Angular, Vue.JS, Vanilla, ...) ",
+  "description": "Test component the same way, regardless of the framework (React, Angular, Vue.JS, Vanilla, ...) ",
   "main": "index.js",
   "scripts": {
     "install": "npm run lerna bootstrap && cd website && npm i",
