@@ -9,7 +9,7 @@
     "lerna": "lerna",
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "jest --coverage",
+    "test": "jest --ci --runInBand --coverage",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "tdd": "jest --watch",
     "changelog": "gitmoji-changelog",
