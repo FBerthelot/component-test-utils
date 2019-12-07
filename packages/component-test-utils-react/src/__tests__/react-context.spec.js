@@ -73,4 +73,25 @@ describe('shallow - react context', () => {
       '<Symbol(react.provider)><Toolbar><div><ThemedButton><div>light</div></ThemedButton></div></Toolbar></Symbol(react.provider)>'
     );
   });
+
+  it('should overide the context when givin a specific param to the shallow', () => {
+    const ThemeContext = React.createContext('light');
+
+    const ThemedButton = () => {
+      const context = React.useContext(ThemeContext);
+      return <div>{context}</div>;
+    };
+
+    const cmp = shallow(<ThemedButton/>, {
+      externals: {
+        contexts: [
+          {id: ThemeContext, value: 'dark'}
+        ]
+      }
+    });
+
+    expect(cmp.html()).toBe(
+      '<div>dark</div>'
+    );
+  });
 });

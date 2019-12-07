@@ -6,7 +6,8 @@ describe('dispatcher', () => {
 
   beforeEach(() => {
     component = {
-      _render: jest.fn()
+      _render: jest.fn(),
+      _config: {}
     };
     dispatcher = createDispatcher(component);
   });
@@ -75,6 +76,38 @@ describe('dispatcher', () => {
   describe('useContext', () => {
     it('should return the current value of the context', () => {
       const contextValue = dispatcher.useContext({_currentValue: 42});
+      expect(contextValue).toBe(42);
+    });
+
+    it('should return the context overide when there is one', () => {
+      const contextTest = {_currentValue: 42};
+      component._config = {
+        externals: {
+          contexts: [{id: contextTest, value: 0}]
+        }
+      };
+
+      const contextValue = dispatcher.useContext(contextTest);
+      expect(contextValue).toBe(0);
+    });
+
+    it('should should return actualValue when context is not found', () => {
+      const contextTest = {_currentValue: 42};
+      component._config = {
+        externals: {
+          contexts: [{id: {}, value: 0}]
+        }
+      };
+      const contextValue = dispatcher.useContext(contextTest);
+      expect(contextValue).toBe(42);
+    });
+
+    it('should should return actualValue when no contexts found', () => {
+      const contextTest = {_currentValue: 42};
+      component._config = {
+        externals: {}
+      };
+      const contextValue = dispatcher.useContext(contextTest);
       expect(contextValue).toBe(42);
     });
   });
