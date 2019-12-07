@@ -2,12 +2,28 @@
 title: Getting Started
 ---
 
+As each framework are different, the installation is different for each framework.
+After that, the API will be the same, promise !
+
+
 ## React
 
-Start by installing dependencies:
-`npm i -D component-test-utils-react` with npm, or `yarn add -D component-test-utils-react` with yarn.
+### Installation
 
-Then, you can test everything work well by executing this test (with jest) :
+Start by installing dependencies with npm:
+
+```sh
+npm i -D component-test-utils-react
+```
+
+or with yarn:
+```sh
+yarn add -D component-test-utils-react
+```
+
+### Hello test world with jest
+
+You can test everything work well by executing this test (with jest):
 
 ```jsx
 import {shallow} from 'component-test-utils-react';
@@ -17,33 +33,5 @@ test('component-test-utils-react should work', () => {
   const cmp = shallow(<Hello />);
 
   expect(cmp.html()).toBe('<div>Hello</div>');
-});
-```
-
-## Angular
-
-Start by installing dependencies:
-`npm i -D component-test-utils-angular` with npm, or `yarn add -D component-test-utils-angular` with yarn.
-
-Then, you can test everything work well by executing this test (with jest or jasmine) :
-
-```jsx
-import 'core-js/es7/reflect';
-
-import {Component} from '@angular/core';
-
-import shallow from './shallow';
-
-@Component({
-  selector: 'component',
-  template: '<h1>Hello test world</h1>'
-})
-class MyComponent {}
-
-describe('Angular shallow', () => {
-  it('should return html', () => {
-    const cmp = shallow(MyComponent, {debug: true});
-    expect(cmp.html()).toBe('<h1>Hello test world</h1>');
-  });
 });
 ```
