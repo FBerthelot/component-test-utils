@@ -119,4 +119,68 @@ describe('shallow - querySelector', () => {
 
     expect(cmp.querySelector('ChildComponent1').exists()).toBe(true);
   });
+
+  it('should find tag component', () => {
+    const Component = () => (
+      <div className="container">
+        <header>header content</header>
+        <main>
+          main content
+          <svg id="image"/>
+        </main>
+      </div>
+    );
+
+    const cmp = shallow(<Component/>);
+
+    expect(cmp.querySelector('svg').exists()).toBe(true);
+  });
+
+  it('should find id', () => {
+    const Component = () => (
+      <div className="container">
+        <header>header content</header>
+        <main>
+          main content
+          <svg id="image" className="img"/>
+        </main>
+      </div>
+    );
+
+    const cmp = shallow(<Component/>);
+
+    expect(cmp.querySelector('#image').exists()).toBe(true);
+  });
+
+  it('should find class', () => {
+    const Component = () => (
+      <div className="container">
+        <header>header content</header>
+        <main>
+          main content
+          <svg id="image" className="hello img other-class"/>
+        </main>
+      </div>
+    );
+
+    const cmp = shallow(<Component/>);
+
+    expect(cmp.querySelector('.img').exists()).toBe(true);
+  });
+
+  it('should find element with a nested selector', () => {
+    const Component = () => (
+      <div className="container">
+        <header>header content</header>
+        <main>
+          main content
+          <svg id="image" className="hello img other-class"/>
+        </main>
+      </div>
+    );
+
+    const cmp = shallow(<Component/>);
+
+    expect(cmp.querySelector('.container main #image').exists()).toBe(true);
+  });
 });
