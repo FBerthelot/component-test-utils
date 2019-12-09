@@ -1,5 +1,99 @@
 # Changelog
 
+<a name="1.0.0-alpha.10"></a>
+## 1.0.0-alpha.10 (2019-12-09)
+
+### Added
+
+- ✨ add className and nested css selector for querySelector [[b206066](https://github.com/FBerthelot/component-test-utils/commit/b206066bebcf68a67b11ce76c863775816dba96c)]
+- ✨ add react contexts externals option [[88c837f](https://github.com/FBerthelot/component-test-utils/commit/88c837f956f38f211b07e667a1908785ad979d48)]
+
+### Changed
+
+- 🔧 lauch test in a CI compatible way [[d4a7761](https://github.com/FBerthelot/component-test-utils/commit/d4a77613ee4d316ddc18302698fe41c1a66df935)]
+- ⬆️ Update each dependencies [[7d11d2f](https://github.com/FBerthelot/component-test-utils/commit/7d11d2f33b325e9358442dffcf4ebcecea95c8ba)]
+- ⬆️ update lockfile package-lock.json [[a78534f](https://github.com/FBerthelot/component-test-utils/commit/a78534f5b4275aa3d940c1727e28f140dd581dce)]
+- ⬆️ Update eslint-plugin-react to version 7.17.0 [[648f720](https://github.com/FBerthelot/component-test-utils/commit/648f7207231919abdc54b79e9958772f9b399761)]
+
+### Miscellaneous
+
+-  Merge pull request [#51](https://github.com/FBerthelot/component-test-utils/issues/51) from FBerthelot/finilize [[916783c](https://github.com/FBerthelot/component-test-utils/commit/916783ca5498a9f57d52fc6d48a32daac3f596f7)]
+- 📝 improve getting started and concept doc [[62f8c25](https://github.com/FBerthelot/component-test-utils/commit/62f8c25f1af317adcd3c5c637cbde5db84b59587)]
+-  Merge pull request [#50](https://github.com/FBerthelot/component-test-utils/issues/50) from FBerthelot/doc [[19f49f7](https://github.com/FBerthelot/component-test-utils/commit/19f49f71db4fbadf270eed8682b234f5a1663a4e)]
+- 📝 add all README in each project [[2853021](https://github.com/FBerthelot/component-test-utils/commit/2853021a6afa46a9b0f1a3ab9a07500a1c3e62f9)]
+-  Merge pull request [#46](https://github.com/FBerthelot/component-test-utils/issues/46) from FBerthelot/greenkeeper/eslint-config-xo-space-0.22.0 [[9ce2066](https://github.com/FBerthelot/component-test-utils/commit/9ce20665f46534b66a5b1d1ea4ce92b54d658037)]
+-  Merge pull request [#48](https://github.com/FBerthelot/component-test-utils/issues/48) from FBerthelot/greenkeeper/eslint-plugin-react-7.17.0 [[0c35120](https://github.com/FBerthelot/component-test-utils/commit/0c35120d0a92b414104c4ca6128ef727c0efd2ed)]
+
+
+<a name="1.0.0-alpha.9"></a>
+## 1.0.0-alpha.9 (2019-11-25)
+
+### Added
+
+- ✨ accept complexe JSX structure [[de1e15d](https://github.com/FBerthelot/component-test-utils/commit/de1e15d33f57cfa256e3c0b6206279a5ef4b0a50)]
+
+### Miscellaneous
+
+-  Merge pull request [#47](https://github.com/FBerthelot/component-test-utils/issues/47) from FBerthelot/reactComplexJsxFix [[7ddf6a9](https://github.com/FBerthelot/component-test-utils/commit/7ddf6a974f7487c090867a22b9d1d31cf9f98f07)]
+
+
+<a name="1.0.0-alpha.8"></a>
+## 1.0.0-alpha.8 (2019-10-19)
+
+### Added
+
+- 👷‍♂️ add netlify for check documentation [[855ba81](https://github.com/FBerthelot/component-test-utils/commit/855ba8106a980dd56c2179189e47f34bef09783f)]
+- ✨ Add exists method for react [[3e83a8e](https://github.com/FBerthelot/component-test-utils/commit/3e83a8e758f806bf0af8f732f4d089e3ceadd767)]
+
+### Changed
+
+- ⬆️ update lockfile package-lock.json [[43aa65e](https://github.com/FBerthelot/component-test-utils/commit/43aa65ea99e1af990c1beadd8f97bec83ae3b15a)]
+- ⬆️ Update eslint-plugin-react to version 7.15.0 [[fcef3e5](https://github.com/FBerthelot/component-test-utils/commit/fcef3e5c172b30665b29c06a2976e2a8a94c2f8d)]
+- ⬆️ update lockfile package-lock.json [[1bf9d46](https://github.com/FBerthelot/component-test-utils/commit/1bf9d4637a841b1fa258aec867f91b806892f627)]
+- ⬆️ Update eslint-plugin-react-hooks to version 2.0.0 [[4047b59](https://github.com/FBerthelot/component-test-utils/commit/4047b5957a9df4fa0310fe0bb78d678bc291eeee)]
+
+### Miscellaneous
+
+-  Merge pull request [#44](https://github.com/FBerthelot/component-test-utils/issues/44) from FBerthelot/greenkeeper/eslint-plugin-react-7.15.0 [[d5d2597](https://github.com/FBerthelot/component-test-utils/commit/d5d2597c2ac45b0caf943a005b895698ff79adb1)]
+-  Merge pull request [#43](https://github.com/FBerthelot/component-test-utils/issues/43) from FBerthelot/reactExists [[6d9147d](https://github.com/FBerthelot/component-test-utils/commit/6d9147d19330dd5eeb4f9601a4bbb6ad342a2de0)]
+-  Merge pull request [#42](https://github.com/FBerthelot/component-test-utils/issues/42) from FBerthelot/reactExists [[4b015a9](https://github.com/FBerthelot/component-test-utils/commit/4b015a9a7b0a00986de8199360b65a2ae827b0fa)]
+-  Merge pull request [#41](https://github.com/FBerthelot/component-test-utils/issues/41) from FBerthelot/greenkeeper/eslint-plugin-react-hooks-2.0.0 [[c1abdd4](https://github.com/FBerthelot/component-test-utils/commit/c1abdd49c1dfdadbd81fb6c20262f1d344924478)]
+
+
+<a name="1.0.0-alpha.7"></a>
+## 1.0.0-alpha.7 (2019-08-21)
+
+### Added
+
+- ✨ handle displayName for querySelector in react [[4527dca](https://github.com/FBerthelot/component-test-utils/commit/4527dca99fa1ae33f1873346f1b5007e4010e730)]
+
+### Miscellaneous
+
+-  Merge pull request [#40](https://github.com/FBerthelot/component-test-utils/issues/40) from FBerthelot/getTagName [[aec37d4](https://github.com/FBerthelot/component-test-utils/commit/aec37d4ef774f6d74e75c886acd4f52a7079b148)]
+
+
+<a name="1.0.0-alpha.6"></a>
+## 1.0.0-alpha.6 (2019-08-21)
+
+### Added
+
+- ✨ handle deep find for querySelector for react [[90106af](https://github.com/FBerthelot/component-test-utils/commit/90106af2db9e4efa199f523da3a84a14e4f30b94)]
+
+### Changed
+
+- ⬆️ Update bunch of dependencies [[0371092](https://github.com/FBerthelot/component-test-utils/commit/03710925d51d7d660128cc3c2eb3626296f33e74)]
+- ⬆️ Update @typescript-eslint to version 2.0.0 [[2eb3aa1](https://github.com/FBerthelot/component-test-utils/commit/2eb3aa114056ec78edc804426492b04d54f6c5b8)]
+- ⬆️ update lockfile packages/component-test-utils-angular/package-lock.json [[9c86eb3](https://github.com/FBerthelot/component-test-utils/commit/9c86eb3ace337a01ae460ab5b1de6ffda1fcc084)]
+- ⬆️ Update core-js to version 3.2.1 [[8b235e1](https://github.com/FBerthelot/component-test-utils/commit/8b235e1bcaab2d3a0bc541bbba7aaf46ad2c47f1)]
+
+### Miscellaneous
+
+-  Merge pull request [#38](https://github.com/FBerthelot/component-test-utils/issues/38) from FBerthelot/greenkeeper/eslint-6.2.1 [[ddff0c5](https://github.com/FBerthelot/component-test-utils/commit/ddff0c5b0999fb94c5ec45f993005579c533605c)]
+-  Merge pull request [#35](https://github.com/FBerthelot/component-test-utils/issues/35) from FBerthelot/greenkeeper/@typescript-eslint/parser-2.0.0 [[ce37a81](https://github.com/FBerthelot/component-test-utils/commit/ce37a81ba9ca0037d0963de3412c1e3055de3b14)]
+-  Merge pull request [#39](https://github.com/FBerthelot/component-test-utils/issues/39) from FBerthelot/deepQuerySelector [[69e3192](https://github.com/FBerthelot/component-test-utils/commit/69e3192dde65c01aa4f8bd0481e508f490ec0fa3)]
+-  Merge pull request [#37](https://github.com/FBerthelot/component-test-utils/issues/37) from FBerthelot/greenkeeper/default/core-js-3.2.1 [[74f9bd0](https://github.com/FBerthelot/component-test-utils/commit/74f9bd01355425428169c26e49aa39c55846cb1a)]
+
+
 <a name="1.0.0-alpha.5"></a>
 ## 1.0.0-alpha.5 (2019-07-27)
 
