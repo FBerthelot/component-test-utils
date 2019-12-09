@@ -1,6 +1,6 @@
 {
   "name": "component-test-utils-angular",
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.10",
   "description": " Test angular component the same way as other frameworks",
   "main": "build/index.js",
   "scripts": {
