@@ -56,7 +56,11 @@ class Dispatcher {
   }
 
   useContext(context) {
-    return context._currentValue;
+    const contextOveride = this._shallowedComponent._config.externals &&
+      this._shallowedComponent._config.externals.contexts &&
+      this._shallowedComponent._config.externals.contexts.find(c => c.id === context);
+
+    return contextOveride ? contextOveride.value : context._currentValue;
   }
 
   useReducer(reducer, initialState) {

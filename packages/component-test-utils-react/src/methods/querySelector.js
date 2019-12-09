@@ -1,34 +1,62 @@
 const React = require('react');
 const {getTagName} = require('./getTagName');
 const {EmptyShallowedComponent} = require('../emptyShallow');
-const isIDselector = /^#(.*)/;
+const isIDselectorRegex = /^#(.*)/;
+const isClassSelectorRegex = /^\.(.*)/;
 
-const isSelectedObject = (elem, selector) => {
+const isSelectedObject = (elem, selectorTree) => {
   if (typeof elem !== 'object') {
-    return false;
+    return {
+      selectorFullMatch: false,
+      newSelectorTree: selectorTree
+    };
   }
 
-  const matchId = selector.match(isIDselector);
+  let lastValueMatch = false;
+  const newSelectorTree = selectorTree
+    .map((selector, index) => {
+      if (
+        selector.isAlreadyFound ||
+        (selectorTree[index - 1] && !selectorTree[index - 1].isAlreadyFound)
+      ) {
+        return selector;
+      }
 
-  if (matchId) {
-    return elem.props && elem.props.id === matchId[1];
-  }
+      const isMatchCurrentSelector =
+        selector.isIdSelector ?
+          elem.props && elem.props.id === selector.value :
+          selector.isClassSelector ?
+            elem.props && elem.props.className && new RegExp(` ${selector.value} `).test(` ${elem.props.className} `) :
+            getTagName(elem) === selector.value;
 
-  // If tagname selector
-  return getTagName(elem) === selector;
+      const isLastSelector = selectorTree.length === index + 1;
+      lastValueMatch = isLastSelector && isMatchCurrentSelector;
+
+      return {
+        ...selector,
+        // If it's last value never set it as isAlreadyFound
+        isAlreadyFound: isLastSelector ? false : isMatchCurrentSelector
+      };
+    });
+
+  return {
+    selectorFullMatch: lastValueMatch,
+    newSelectorTree
+  };
 };
 
-function findElements(shallowedComponent, selector) {
+function findElements(shallowedComponent, selectorTree) {
   const result = [];
 
-  if (isSelectedObject(shallowedComponent, selector)) {
+  const {selectorFullMatch, newSelectorTree} = isSelectedObject(shallowedComponent, selectorTree);
+  if (selectorFullMatch) {
     result.push(shallowedComponent);
   }
 
   // When component is an array, check if wanted compoent is between each element
   if (Array.isArray(shallowedComponent)) {
     shallowedComponent.forEach(child => {
-      findElements(child, selector).forEach(el => result.push(el));
+      findElements(child, newSelectorTree).forEach(el => result.push(el));
     });
 
     return result;
@@ -41,18 +69,41 @@ function findElements(shallowedComponent, selector) {
   ) {
     if (Array.isArray(shallowedComponent.props.children)) {
       shallowedComponent.props.children.forEach(child => {
-        findElements(child, selector).forEach(el => result.push(el));
+        findElements(child, newSelectorTree).forEach(el => result.push(el));
       });
     } else {
-      findElements(shallowedComponent.props.children, selector).forEach(el => result.push(el));
+      findElements(shallowedComponent.props.children, newSelectorTree).forEach(el => result.push(el));
     }
   }
 
   return result;
 }
 
+const extractSelectorTree = selector => {
+  return selector.split(' ')
+    .filter(v => v)
+    .map(selector => {
+      const matchId = selector.match(isIDselectorRegex);
+      const matchClass = selector.match(isClassSelectorRegex);
+
+      const isClassSelector = Boolean(matchClass);
+      const isIdSelector = Boolean(matchId);
+
+      return {
+        isIdSelector,
+        isClassSelector,
+        value:
+          isIdSelector ?
+            matchId[1] :
+            isClassSelector ?
+              matchClass[1] :
+              selector
+      };
+    });
+};
+
 exports.querySelector = (shallowedComponent, selector, ShallowRender, getView) => {
-  const targetedComponents = findElements(shallowedComponent, selector);
+  const targetedComponents = findElements(shallowedComponent, extractSelectorTree(selector));
   const targetedComponent = targetedComponents[0];
 
   if (!targetedComponent) {
