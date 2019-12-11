@@ -26,7 +26,7 @@ function buildPropsString(props, reactEl) {
 }
 
 function buildHtmlEl(reactEl) {
-  if (reactEl === null || reactEl === undefined) {
+  if (reactEl === null || reactEl === undefined || reactEl === false || reactEl === true) {
     return '';
   }
 

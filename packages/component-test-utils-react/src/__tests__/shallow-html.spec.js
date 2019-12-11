@@ -287,4 +287,23 @@ describe('shallow - html', () => {
       '<section id="post"><div><span>yolo</span><div>Test</div><ChildComponent1/><ChildComponent2/><ChildComponent3/></div></section>'
     );
   });
+
+  it('should not display component that have boolean or null', () => {
+    const Component = () => (
+      <div className="container">
+        {false}
+        <header>header content</header>
+        <main>
+          {true}
+          main content
+          {null}
+          <svg id="image" className="hello img other-class"/>
+        </main>
+      </div>
+    );
+
+    const cmp = shallow(<Component/>);
+
+    expect(cmp.html()).toBe('<div class="container"><header>header content</header><main>main content<svg id="image" class="hello img other-class"/></main></div>');
+  });
 });
