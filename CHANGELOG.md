@@ -1,5 +1,18 @@
 # Changelog
 
+<a name="1.0.0-alpha.11"></a>
+## 1.0.0-alpha.11 (2019-12-11)
+
+### Fixed
+
+- 🐛 Fix the boolean and nullish jsx value for react [[3dcbe1b](https://github.com/FBerthelot/component-test-utils/commit/3dcbe1b4d00d47cb6ed2017f9d0fd8f747b2a0d8)]
+
+### Miscellaneous
+
+-  Merge pull request [#52](https://github.com/FBerthelot/component-test-utils/issues/52) from FBerthelot/fixBooleanValue [[7b2818e](https://github.com/FBerthelot/component-test-utils/commit/7b2818ea639e1488fed7ea685530c32413457222)]
+- 📝 update Changelog to latest beta [[bdf977c](https://github.com/FBerthelot/component-test-utils/commit/bdf977cfaa2edcfa4c9faf983f77b3b932e2ff97)]
+
+
 <a name="1.0.0-alpha.10"></a>
 ## 1.0.0-alpha.10 (2019-12-09)
 
