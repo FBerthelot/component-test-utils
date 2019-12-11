@@ -183,4 +183,23 @@ describe('shallow - querySelector', () => {
 
     expect(cmp.querySelector('.container main #image').exists()).toBe(true);
   });
+
+  it('should not throw error when component have boolean or null', () => {
+    const Component = () => (
+      <div className="container">
+        {false}
+        <header>header content</header>
+        <main>
+          {true}
+          main content
+          {null}
+          <svg id="image" className="hello img other-class"/>
+        </main>
+      </div>
+    );
+
+    const cmp = shallow(<Component/>);
+
+    expect(cmp.querySelector('.container main #image').exists()).toBe(true);
+  });
 });

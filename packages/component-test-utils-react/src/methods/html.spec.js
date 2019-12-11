@@ -5,6 +5,14 @@ describe('react getHtml method', () => {
     expect(getHtml()).toBe('');
   });
 
+  it('should return empty string when givin a boolean at true', () => {
+    expect(getHtml(true)).toBe('');
+  });
+
+  it('should return empty string when givin a boolean at false', () => {
+    expect(getHtml(false)).toBe('');
+  });
+
   it('should return the number in string when param is a number', () => {
     expect(getHtml(0)).toBe('0');
   });

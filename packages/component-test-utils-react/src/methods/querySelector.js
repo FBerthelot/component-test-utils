@@ -47,6 +47,10 @@ const isSelectedObject = (elem, selectorTree) => {
 
 function findElements(shallowedComponent, selectorTree) {
   const result = [];
+  // If component is null or undefined, don't try to explore it
+  if (!shallowedComponent) {
+    return result;
+  }
 
   const {selectorFullMatch, newSelectorTree} = isSelectedObject(shallowedComponent, selectorTree);
   if (selectorFullMatch) {
