@@ -132,10 +132,7 @@ const extractSelectorTree = selector => {
     });
 };
 
-exports.querySelector = (shallowedComponent, selector, ShallowRender, getView) => {
-  const targetedComponents = findElements(shallowedComponent, extractSelectorTree(selector));
-  const targetedComponent = targetedComponents[0];
-
+function shallowFoundComponent({targetedComponent, shallowedComponent, selector, ShallowRender, getView}) {
   if (!targetedComponent) {
     return new EmptyShallowedComponent(selector, getView());
   }
@@ -152,4 +149,18 @@ exports.querySelector = (shallowedComponent, selector, ShallowRender, getView) =
     React.createElement(WrapperComponent),
     shallowedComponent._config
   );
+}
+
+exports.querySelector = (shallowedComponent, selector, ShallowRender, getView) => {
+  const targetedComponents = findElements(shallowedComponent, extractSelectorTree(selector));
+  const targetedComponent = targetedComponents[0];
+
+  return shallowFoundComponent({targetedComponent, shallowedComponent, selector, ShallowRender, getView});
+};
+
+exports.querySelectors = (shallowedComponent, selector, ShallowRender, getView) => {
+  return findElements(shallowedComponent, extractSelectorTree(selector))
+    .map(targetedComponent =>
+      shallowFoundComponent({targetedComponent, shallowedComponent, selector, ShallowRender, getView})
+    );
 };
