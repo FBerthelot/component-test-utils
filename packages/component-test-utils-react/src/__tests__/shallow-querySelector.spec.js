@@ -168,6 +168,38 @@ describe('shallow - querySelector', () => {
     expect(cmp.querySelector('.img').exists()).toBe(true);
   });
 
+  it('should find element with attributs', () => {
+    const Component = () => (
+      <div className="container">
+        <header>header content</header>
+        <main>
+          main content
+          <svg id="image" className="hello img other-class"/>
+        </main>
+      </div>
+    );
+
+    const cmp = shallow(<Component/>);
+
+    expect(cmp.querySelector('[id]').exists()).toBe(true);
+  });
+
+  it('should find element with attributs value', () => {
+    const Component = () => (
+      <div className="container">
+        <header>header content</header>
+        <main>
+          main content
+          <svg id="image" className="hello img other-class"/>
+        </main>
+      </div>
+    );
+
+    const cmp = shallow(<Component/>);
+
+    expect(cmp.querySelector('[id=image]').exists()).toBe(true);
+  });
+
   it('should find element with a nested selector', () => {
     const Component = () => (
       <div className="container">

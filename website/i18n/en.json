@@ -44,6 +44,9 @@
       "shallow/querySelector": {
         "title": "shallow/querySelector"
       },
+      "shallow/querySelectors": {
+        "title": "shallow/querySelectors"
+      },
       "shallow/setProps": {
         "title": "shallow/setProps"
       },

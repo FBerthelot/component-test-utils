@@ -4,7 +4,7 @@ const {getHtml} = require('./methods/html');
 const {render} = require('./render/render');
 const {createDispatcher} = require('./dispatcher/');
 const {dispatchEvent} = require('./methods/dispatchEvent');
-const {querySelector} = require('./methods/querySelector');
+const {querySelector, querySelectors} = require('./methods/querySelector');
 const {Updater} = require('./updater/updater');
 
 const {
@@ -218,6 +218,12 @@ class ShallowRender {
     this._throwIfUnmounted('querySelector');
 
     return querySelector(this._rendered, selector, ShallowRender, this.html.bind(this));
+  }
+
+  querySelectors(selector) {
+    this._throwIfUnmounted('querySelectors');
+
+    return querySelectors(this._rendered, selector, ShallowRender, this.html.bind(this));
   }
 
   unmount() {
