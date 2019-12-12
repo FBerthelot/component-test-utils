@@ -3,6 +3,7 @@ const {getTagName} = require('./getTagName');
 const {EmptyShallowedComponent} = require('../emptyShallow');
 const isIDselectorRegex = /^#(.*)/;
 const isClassSelectorRegex = /^\.(.*)/;
+const isAttributeSelectorRegex = /^\[([^\]=]+)=?"?([^"]*)"?\]/;
 
 const isSelectedObject = (elem, selectorTree) => {
   if (typeof elem !== 'object') {
@@ -22,12 +23,30 @@ const isSelectedObject = (elem, selectorTree) => {
         return selector;
       }
 
-      const isMatchCurrentSelector =
-        selector.isIdSelector ?
-          elem.props && elem.props.id === selector.value :
-          selector.isClassSelector ?
-            elem.props && elem.props.className && new RegExp(` ${selector.value} `).test(` ${elem.props.className} `) :
-            getTagName(elem) === selector.value;
+      let isMatchCurrentSelector;
+      // eslint-disable-next-line default-case
+      switch (selector.type) {
+        case 'id':
+          isMatchCurrentSelector = elem.props && elem.props.id === selector.value;
+          break;
+        case 'class':
+          isMatchCurrentSelector = elem.props &&
+              elem.props.className &&
+              new RegExp(` ${selector.value} `).test(` ${elem.props.className} `);
+          break;
+        case 'attribute': {
+          const attrNameMatch = Object.keys(elem.props).find(attrName => attrName === selector.value.attrName);
+          const attrValueMatch = selector.value.attrValue ?
+            elem.props[selector.value.attrName] === selector.value.attrValue :
+            true;
+          isMatchCurrentSelector = attrNameMatch && attrValueMatch;
+          break;
+        }
+
+        case 'element':
+          isMatchCurrentSelector = getTagName(elem) === selector.value;
+          break;
+      }
 
       const isLastSelector = selectorTree.length === index + 1;
       lastValueMatch = isLastSelector && isMatchCurrentSelector;
@@ -89,19 +108,26 @@ const extractSelectorTree = selector => {
     .map(selector => {
       const matchId = selector.match(isIDselectorRegex);
       const matchClass = selector.match(isClassSelectorRegex);
+      const matchAttribute = selector.match(isAttributeSelectorRegex);
 
       const isClassSelector = Boolean(matchClass);
       const isIdSelector = Boolean(matchId);
+      const isAttributeSelector = Boolean(matchAttribute);
 
       return {
-        isIdSelector,
-        isClassSelector,
+        type:
+          isClassSelector ? 'class' :
+            isAttributeSelector ? 'attribute' :
+              isIdSelector ? 'id' :
+                'element',
         value:
           isIdSelector ?
             matchId[1] :
             isClassSelector ?
               matchClass[1] :
-              selector
+              matchAttribute ?
+                {attrName: matchAttribute[1], attrValue: matchAttribute[2]} :
+                selector
       };
     });
 };
