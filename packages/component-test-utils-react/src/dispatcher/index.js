@@ -42,7 +42,12 @@ class Dispatcher {
   }
 
   useState(initialState) {
-    return this.useReducer((_, arg) => arg, initialState);
+    return this.useReducer(
+      (prevState, arg) => {
+        return typeof arg === 'function' ? arg(prevState) : arg;
+      },
+      initialState
+    );
   }
 
   useEffect(fn, memo) {
