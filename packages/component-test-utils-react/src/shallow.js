@@ -100,7 +100,7 @@ class ShallowRender {
       this._rendered = render(reactEl, this._config, ShallowRender);
       this.props = {
         ...enhancedProps,
-        ...this._rendered.props,
+        ...(this._rendered ? this._rendered.props : {}),
         children: null
       };
       delete this.props.children;

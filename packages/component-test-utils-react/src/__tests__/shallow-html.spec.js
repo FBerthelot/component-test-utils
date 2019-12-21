@@ -2,6 +2,27 @@ const {shallow} = require('../shallow');
 const React = require('react');
 
 describe('shallow - html', () => {
+  it('should render a component that return undefined', () => {
+    const Component = () => {};
+
+    const cmp = shallow(<Component/>);
+    expect(cmp.html()).toBe('');
+  });
+
+  it('should render a component that return null', () => {
+    const Component = () => null;
+
+    const cmp = shallow(<Component/>);
+    expect(cmp.html()).toBe('');
+  });
+
+  it('should render a component that return empty string', () => {
+    const Component = () => '';
+
+    const cmp = shallow(<Component/>);
+    expect(cmp.html()).toBe('');
+  });
+
   it('it should render component with one div', () => {
     const Component = () => {
       return <div/>;
