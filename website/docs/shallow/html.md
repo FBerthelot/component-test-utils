@@ -20,7 +20,7 @@ component.html(); // "<div>Hello World, test</div>"
 
 #### with angular
 
-```ts
+```typescript
 import 'core-js/es7/reflect';
 import {Component} from '@angular/core';
 import {shallow} from 'component-test-utils-angular';

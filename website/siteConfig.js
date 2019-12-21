@@ -39,7 +39,7 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'philosophy', label: 'Philosphy'},
+    {doc: 'philosophy', label: 'Philosophy'},
     {doc: 'concept', label: 'Doc'},
     {blog: true, label: 'Blog'}
   ],
@@ -75,10 +75,11 @@ const siteConfig = {
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
   copyright: `MIT Copyright © ${new Date().getFullYear()} Florent Berthelot`,
 
-  highlight: {
+  /* Highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
     theme: 'default'
-  },
+  }, */
+  usePrism: true,
 
   // Add custom scripts here that would be placed in <script> tags.
   scripts: ['https://buttons.github.io/buttons.js'],
