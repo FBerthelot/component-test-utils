@@ -4,7 +4,7 @@
         <title>Component test utils Blog</title>
         <link>https://component-test-utils.berthelot.io/blog</link>
         <description>The best place to stay up-to-date with the latest Component test utils news and events.</description>
-        <lastBuildDate>Fri, 15 Mar 2019 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 09 Dec 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -12,7 +12,14 @@
             <url>https://component-test-utils.berthelot.io/img/logo.svg</url>
             <link>https://component-test-utils.berthelot.io/blog</link>
         </image>
-        <copyright>MIT Copyright © 2019 Florent Berthelot</copyright>
+        <copyright>MIT Copyright © 2020 Florent Berthelot</copyright>
+        <item>
+            <title><![CDATA[Announcing Beta of component-test-utils]]></title>
+            <link>https://component-test-utils.berthelot.io/blog/2019/12/09/beta-release.html</link>
+            <guid>https://component-test-utils.berthelot.io/blog/2019/12/09/beta-release.html</guid>
+            <pubDate>Mon, 09 Dec 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>I've been working on this side-project for almost 1 year now and I think it's mature enough to go onto the next step: the official Beta!</p> <p>I've never communicated about this library except to my closest co-workers and friends. So let's starts this year...</p>]]></description>
+        </item>
         <item>
             <title><![CDATA[Starting the project !]]></title>
             <link>https://component-test-utils.berthelot.io/blog/2019/03/15/hello-world.html</link>

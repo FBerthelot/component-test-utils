@@ -2,12 +2,24 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://component-test-utils.berthelot.io/blog</id>
     <title>Component test utils Blog</title>
-    <updated>2019-03-15T06:00:00.000Z</updated>
+    <updated>2019-12-09T06:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://component-test-utils.berthelot.io/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Component test utils news and events.</subtitle>
     <logo>https://component-test-utils.berthelot.io/img/logo.svg</logo>
-    <rights>MIT Copyright © 2019 Florent Berthelot</rights>
+    <rights>MIT Copyright © 2020 Florent Berthelot</rights>
+    <entry>
+        <title type="html"><![CDATA[Announcing Beta of component-test-utils]]></title>
+        <id>https://component-test-utils.berthelot.io/blog/2019/12/09/beta-release.html</id>
+        <link href="https://component-test-utils.berthelot.io/blog/2019/12/09/beta-release.html"/>
+        <updated>2019-12-09T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>I've been working on this side-project for almost 1 year now and I think it's mature enough to go onto the next step: the official Beta!</p> <p>I've never communicated about this library except to my closest co-workers and friends. So let's starts this year...</p>]]></summary>
+        <author>
+            <name>Florent Berthelot</name>
+            <email/>
+            <uri>http://twitter.com/berthel350</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Starting the project !]]></title>
         <id>https://component-test-utils.berthelot.io/blog/2019/03/15/hello-world.html</id>
