@@ -44,7 +44,7 @@
     "coveralls": "^3.0.9",
     "eslint": "^6.7.2",
     "eslint-config-xo-react": "^0.21.0",
-    "eslint-config-xo-space": "^0.22.0",
+    "eslint-config-xo-space": "^0.23.0",
     "eslint-plugin-react": "7.18.3",
     "eslint-plugin-react-hooks": "^2.3.0",
     "gitmoji-changelog": "^2.0.1",
