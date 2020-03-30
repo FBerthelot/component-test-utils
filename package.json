@@ -50,7 +50,7 @@
     "gitmoji-changelog": "^2.0.1",
     "jest": "^24.8.0",
     "lerna": "^3.19.0",
-    "ts-jest": "^25.2.1",
+    "ts-jest": "^25.3.0",
     "typescript": "^3.7.3"
   },
   "greenkeeper": {
