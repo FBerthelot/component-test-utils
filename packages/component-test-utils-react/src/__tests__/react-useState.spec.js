@@ -24,4 +24,16 @@ describe('shallow - react useState', () => {
 
     expect(cmp.html()).toBe('<button type="button" onClick="[handleClick]">initialState+1</button>');
   });
+
+  it.only('should work 5 times in a row', () => {
+    const cmp = shallow(<Component/>);
+
+    cmp.dispatchEvent('click');
+    cmp.dispatchEvent('click');
+    cmp.dispatchEvent('click');
+    cmp.dispatchEvent('click');
+    cmp.dispatchEvent('click');
+
+    expect(cmp.html()).toBe('<button type="button" onClick="[handleClick]">initialState+1+1+1+1+1</button>');
+  });
 });
