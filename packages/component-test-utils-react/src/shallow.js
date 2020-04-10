@@ -92,6 +92,9 @@ class ShallowRender {
         enhancedProps,
         this._component.ref
       );
+      // If component wrapped by react.memo
+    } else if (ReactIs.Memo === this._component.type.$$typeof) {
+      reactEl = this._component.type.type(enhancedProps);
     } else {
       reactEl = this._component.type.call(undefined, enhancedProps);
     }

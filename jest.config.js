@@ -4,5 +4,8 @@ module.exports = {
     'ts-jest': {
       tsConfig: 'packages/component-test-utils-angular/tsconfig.json'
     }
-  }
+  },
+  modulePathIgnorePatterns: [
+    'node_modules'
+  ]
 };
