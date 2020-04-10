@@ -23,13 +23,13 @@
   },
   "homepage": "https://github.com/FBerthelot/component-test-utils#readme",
   "dependencies": {
-    "react-is": "^16.5.2"
+    "react-is": "^16.13.1"
   },
   "devDependencies": {
-    "react": "^16.8.0"
+    "react": "^16.13.1"
   },
   "peerDependencies": {
-    "react": "^16.8.0"
+    "react": "^16.0.0"
   },
   "gitHead": "13c420014036438bcb2650a74976a1cf04ff2034"
 }
