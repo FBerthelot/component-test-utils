@@ -1,5 +1,53 @@
 # Changelog
 
+<a name="1.0.1-beta.0"></a>
+## 1.0.1-beta.0 (2020-04-10)
+
+### Added
+
+- ✨ handle react memo [[03740ec](https://github.com/FBerthelot/component-test-utils/commit/03740ec2cf7907705f74c514519638a8b9f270a6)]
+
+### Changed
+
+- ⬆️ upgrading dependencies [[58c9f58](https://github.com/FBerthelot/component-test-utils/commit/58c9f5850369873a90d36101c7bcdec3f959ded0)]
+- ⬆️ update lockfile package-lock.json [[96250ef](https://github.com/FBerthelot/component-test-utils/commit/96250ef0637da2ffb4c59e04855f8a949190650a)]
+- ⬆️ Update eslint-plugin-react to version 7.19.0 [[f3291c6](https://github.com/FBerthelot/component-test-utils/commit/f3291c64c0d3aa208b116e8c99b351e21bb05a11)]
+- ⬆️ update lockfile package-lock.json [[6e11ded](https://github.com/FBerthelot/component-test-utils/commit/6e11ded524db7deffd1b24e60d46bc8ce0b17fef)]
+- ⬆️ Update ts-jest to version 25.2.1 [[c7dd2c3](https://github.com/FBerthelot/component-test-utils/commit/c7dd2c3a6060875d5d1239ed77a2282f2d199d8f)]
+- ⬆️ update lockfile package-lock.json [[b478945](https://github.com/FBerthelot/component-test-utils/commit/b4789452ce9b595272b4d50a107710874f57b8e7)]
+- ⬆️ Update eslint-config-xo-react to version 0.23.0 [[2c6e183](https://github.com/FBerthelot/component-test-utils/commit/2c6e183c826935b90612ecd99c252d1a01f6f2e5)]
+- ⬆️ update lockfile package-lock.json [[0f7e8a4](https://github.com/FBerthelot/component-test-utils/commit/0f7e8a48c31c2d1974eadb618cb432c3b2402287)]
+- ⬆️ Update @types/jest to version 25.1.2 [[bc49f62](https://github.com/FBerthelot/component-test-utils/commit/bc49f6222a13aa067f157f0d024a4a795f244936)]
+- ⬆️ update lockfile package-lock.json [[5f32f4e](https://github.com/FBerthelot/component-test-utils/commit/5f32f4e783efd093991698e5164949bdee7f5d33)]
+- ⬆️ Update eslint-plugin-react to version 7.18.3 [[9642694](https://github.com/FBerthelot/component-test-utils/commit/9642694e19c2ca10f38b6dcdd0961baaddb39098)]
+- ⬆️ update lockfile package-lock.json [[0dd45d5](https://github.com/FBerthelot/component-test-utils/commit/0dd45d567ddc053293f40bf4b038405444edcf1d)]
+- ⬆️ Update @babel/preset-react to version 7.8.0 [[925edb3](https://github.com/FBerthelot/component-test-utils/commit/925edb30ccc00483ce3bb10d068dffc0ac5dc627)]
+- ⬆️ Update @babel/preset-env to version 7.8.2 [[b8936c0](https://github.com/FBerthelot/component-test-utils/commit/b8936c04eddbc058e42d53a42fe0e60f9d1a439a)]
+- ⬆️ update lockfile package-lock.json [[be28656](https://github.com/FBerthelot/component-test-utils/commit/be2865626bf09793f20b4e492905ace047a2c1fb)]
+- ⬆️ Update eslint-config-xo-react to version 0.21.0 [[9051d7a](https://github.com/FBerthelot/component-test-utils/commit/9051d7a50d268a66cd2fb22af4ee58fa591a43e0)]
+
+### Miscellaneous
+
+-  Merge pull request [#81](https://github.com/FBerthelot/component-test-utils/issues/81) from FBerthelot/reactMemo [[bdba614](https://github.com/FBerthelot/component-test-utils/commit/bdba614ab657159792f024c1014be89fd5566cc3)]
+-  Merge pull request [#71](https://github.com/FBerthelot/component-test-utils/issues/71) from FBerthelot/greenkeeper/eslint-plugin-react-7.19.0 [[dd65ec2](https://github.com/FBerthelot/component-test-utils/commit/dd65ec219e37503af89a6d970671da6ca876c9ef)]
+-  Merge pull request [#70](https://github.com/FBerthelot/component-test-utils/issues/70) from FBerthelot/greenkeeper/ts-jest-25.2.1 [[5d8a3af](https://github.com/FBerthelot/component-test-utils/commit/5d8a3af5bbe41bef3494412704e7422316c00a74)]
+-  Merge pull request [#68](https://github.com/FBerthelot/component-test-utils/issues/68) from FBerthelot/greenkeeper/eslint-config-xo-react-0.23.0 [[dfcc447](https://github.com/FBerthelot/component-test-utils/commit/dfcc447e05004e18c404d6d2360f45bcef5b7e9e)]
+-  Merge pull request [#66](https://github.com/FBerthelot/component-test-utils/issues/66) from FBerthelot/greenkeeper/eslint-plugin-react-7.18.3 [[05e87b9](https://github.com/FBerthelot/component-test-utils/commit/05e87b95b49408fd4bb59fea35f196510048f2c1)]
+-  Merge pull request [#65](https://github.com/FBerthelot/component-test-utils/issues/65) from FBerthelot/greenkeeper/@types/jest-25.1.2 [[da2a619](https://github.com/FBerthelot/component-test-utils/commit/da2a619568a1b2d1548477f437a36f9f30a6422e)]
+-  Merge pull request [#59](https://github.com/FBerthelot/component-test-utils/issues/59) from FBerthelot/greenkeeper/monorepo.babel7-20200114032734 [[d238c22](https://github.com/FBerthelot/component-test-utils/commit/d238c22cb761c30a21ac143718061b4e1936bef9)]
+-  Merge pull request [#57](https://github.com/FBerthelot/component-test-utils/issues/57) from FBerthelot/greenkeeper/eslint-config-xo-react-0.21.0 [[1f1abcc](https://github.com/FBerthelot/component-test-utils/commit/1f1abcc23bf1da568c04ec14d4f0350b54b04bb5)]
+
+
+<a name="1.0.0-beta.0"></a>
+## 1.0.0-beta.0 (2020-01-03)
+
+### Miscellaneous
+
+-  Merge pull request [#56](https://github.com/FBerthelot/component-test-utils/issues/56) from FBerthelot/betaRelease [[73ad6bf](https://github.com/FBerthelot/component-test-utils/commit/73ad6bff9846c2d0c58c4dbf114c6d54bf227288)]
+- 📝 anouncing beta [[87728a6](https://github.com/FBerthelot/component-test-utils/commit/87728a676b3dd1a9e95ccc0b333e075205b6274d)]
+- 📝 update changelog to latest alpha [[13b65b6](https://github.com/FBerthelot/component-test-utils/commit/13b65b67917dfe204ca6a4668e50eabac1046c88)]
+
+
 <a name="1.0.0-alpha.14"></a>
 ## 1.0.0-alpha.14 (2019-12-21)
 
