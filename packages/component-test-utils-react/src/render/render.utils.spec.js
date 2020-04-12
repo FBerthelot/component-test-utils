@@ -42,7 +42,7 @@ describe('react render utils', () => {
       function Toto() {}
       Toto.displayName = 'Yoto';
 
-      expect(shouldBeRender({type: Toto}, config)).toBe(true);
+      expect(shouldBeRender({type: Toto}, config)).toBe(false);
     });
 
     it('should return true when mock list is empty and blackListMode is on', () => {
