@@ -16,6 +16,6 @@ exports.getTagName = function (reactEl) {
   return (
     reactEl.type.displayName ||
     reactEl.type.name ||
-    reactEl.type.$$typeof.toString()
+    (reactEl.type.$$typeof ? reactEl.type.$$typeof.toString() : 'UnnamedComponentPleaseNameIt')
   );
 };
