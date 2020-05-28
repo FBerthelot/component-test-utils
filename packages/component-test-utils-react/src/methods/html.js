@@ -25,7 +25,7 @@ function buildPropsString(props, reactEl) {
     '';
 }
 
-function buildHtmlEl(reactEl) {
+function buildHtmlEl(reactEl, options) {
   if (reactEl === null || reactEl === undefined || reactEl === false || reactEl === true) {
     return '';
   }
@@ -36,10 +36,11 @@ function buildHtmlEl(reactEl) {
 
   if (Array.isArray(reactEl)) {
     return reactEl
-      .map(buildHtmlEl)
+      .map(el => buildHtmlEl(el, options))
       .join('');
   }
 
+  const isHTMLElement = typeof reactEl.type === 'string';
   const tagname = getTagName(reactEl);
 
   const props =
@@ -49,13 +50,17 @@ function buildHtmlEl(reactEl) {
 
   const propsString = buildPropsString(props, reactEl);
 
+  if (options.snapshot && !isHTMLElement && children !== null && children !== undefined) {
+    return buildHtmlEl(reactEl.props.children, options);
+  }
+
   if (children !== null && children !== undefined) {
-    return `<${tagname}${propsString}>${buildHtmlEl(reactEl.props.children)}</${tagname}>`;
+    return `<${tagname}${propsString}>${buildHtmlEl(reactEl.props.children, options)}</${tagname}>`;
   }
 
   return `<${tagname}${propsString}/>`;
 }
 
-exports.getHtml = reactTree => {
-  return buildHtmlEl(reactTree);
+exports.getHtml = (reactTree, options = {snapshot: false}) => {
+  return buildHtmlEl(reactTree, options);
 };

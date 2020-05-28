@@ -189,10 +189,10 @@ class ShallowRender {
   }
 
   // Methods
-  html() {
+  html(options) {
     this._throwIfUnmounted('html');
 
-    return getHtml(this._rendered);
+    return getHtml(this._rendered, options);
   }
 
   dispatchEvent(event) {
