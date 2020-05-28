@@ -327,4 +327,29 @@ describe('shallow - html', () => {
 
     expect(cmp.html()).toBe('<div class="container"><header>header content</header><main>main content<svg id="image" class="hello img other-class"/></main></div>');
   });
+
+  describe('snapshot', () => {
+    it('should render html without display custom element tagname when blackList mode and snapshot option', () => {
+      const ChildComponent1 = ({children}) => (<button type="button">{children}</button>);
+      const ChildComponent2 = () => (<button type="button">1</button>);
+      const ChildComponent3 = () => (<button type="button">3</button>);
+
+      const Component = () => {
+        return (
+          <section id="post">
+            <div>Test</div>
+            <ChildComponent1>0</ChildComponent1>
+            <ChildComponent2/>
+            <ChildComponent3/>
+          </section>
+        );
+      };
+
+      const cmp = shallow(<Component/>, {blackList: true});
+
+      expect(cmp.html({snapshot: true})).toBe(
+        '<section id="post"><div>Test</div><button type="button">0</button><button type="button">1</button><button type="button">3</button></section>'
+      );
+    });
+  });
 });
